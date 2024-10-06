@@ -18,13 +18,13 @@
 
 .container {
     background: linear-gradient(to bottom, #96d1f7, #3c5261);
-    margin-left: 10%;
-    margin-right: 10%;
+    /* margin-left: 10%;
+    margin-right: 10%; */
     padding: 10px;
     box-sizing: border-box;
     border-radius: 10px;
   }
-  
+
   .title {
     text-align: center;
     margin-bottom: 20px;
