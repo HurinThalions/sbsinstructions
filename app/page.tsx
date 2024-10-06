@@ -5,7 +5,6 @@ import { Suspense } from "react";
 import { KatalogSkeleton } from "./ui/skeletons";
 import Katalog from "./ui/katalog";
 
-
 export default function Start() {
   return (
     <main>
