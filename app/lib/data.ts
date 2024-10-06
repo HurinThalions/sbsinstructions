@@ -42,6 +42,7 @@ export async function fetchgefilterteAnleitungen(
     currentPage: number,
 ) {
     const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+    const searchQuery = `%${query}%`
 
     try {
         const anleitungen = await sql<Anleitung>`
@@ -52,6 +53,11 @@ export async function fetchgefilterteAnleitungen(
             anleitungen.datum,
             anleitungen.bild
         FROM anleitungen
+        WHERE
+            anleitungen.titel ILIKE ${searchQuery} OR
+            anleitungen.datum ILIKE ${searchQuery} OR
+            anleitungen.dauer ILIKE ${searchQuery}
+        ORDER BY anleitungen.datum DESC
         LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
         `;
 
