@@ -19,9 +19,9 @@ export default async function Start({
   const currenPage = Number(searchParams?.page) || 1;
 
   return (
-    <main>
+    <main >
       <div className="w-full items-center justify-between">
-      <div className="mt-4 flex items-center justify-between gap-2 md:mt-8 m-40">
+      <div className="mt-4 flex items-center justify-between gap-2 md:mt-8 m-10">
         <Suche placeholder="Anleitungen durchsuchen"/>
       </div>
       <div className="w-full items-center justify-between">

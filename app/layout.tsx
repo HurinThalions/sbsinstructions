@@ -3,6 +3,8 @@ import Navbar from "./ui/navbar";
 
 import "./globals.css";
 import { inter } from '@/app/ui/fonts';
+import '@/app/globals.css';
+
 
 export const metadata: Metadata = {
   title: "Create Next App",

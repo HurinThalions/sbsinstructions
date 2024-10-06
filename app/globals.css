@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
+body {
+  background-color: #F3F5F6;
+  margin: 0;
+}
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
