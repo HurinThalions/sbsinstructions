@@ -2,24 +2,30 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+
+import { UserGroupIcon } from "@heroicons/react/16/solid";
 import styles from '@/app/ui/topbar.module.css'
-import { usePathname } from "next/navigation";
 
 const Navbar = () => {
     const [nav, setNav] = useState(false);
 
   const links = [
     {
-      id: 1,
-      link: "Start",
+        name: 'Home',
+        id: 1,
+        link: "Start",
     },
     {
+        name: 'Profil',
         id: 2,
-        link: "Anleitung durchgehen"
+        link: 'login',
     },
     {
+        name: 'Anleitungen erstellen',
         id: 3,
-        link: "Anleitung erstellen"
+        link: "Anleitung erstellen",
+        icon: UserGroupIcon,
     }
 
   ];
@@ -62,7 +68,7 @@ const Navbar = () => {
             </a>
         </div>
         <div className={styles.boxumProfil}>
-            <a className={styles.profil} href="/Login">
+            <a className={styles.profil} href="/login">
             <Image
                 src={'./Profil_Logo.svg'}
                 width={60}

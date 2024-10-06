@@ -21,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
+       
         <Navbar />
         <div className="flex-grow p-6 md:overflow-y-auto md:p-12">{children}</div>
       </body>

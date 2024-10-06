@@ -1,6 +1,7 @@
 import { sql } from "@vercel/postgres";
 
-import { Anleitung } from "./definitions";
+import { Anleitung, Anleitungsschritt, User } from "./definitions";
+import { error } from "console";
 
 export async function fetchAnleitungen() {
 
@@ -65,5 +66,49 @@ export async function fetchgefilterteAnleitungen(
     } catch (error) {
         console.error('Datenbankfehler3: ', error);
         throw new Error('Fehler beim Filtern der Anleitungen');
+    }
+}
+
+
+export async function fetchpassendeAnleitungsschritte(
+    titel: string,
+) {
+    try {
+        const anleitungsschritte = await sql<Anleitungsschritt>`
+        SELECT
+            anleitungsschritte.anleitung_id,
+            anleitungsschritte.titel,
+            anleitungsschritte.beschreibung,
+            anleitungsschritte.bild,
+            anleitungsschritte.material
+        FROM anleitungsschritte
+        WHERE
+            anleitungsschritte.anleitung_id LIKE ${titel}
+        ORDER BY anleitungsschritte.id DESC
+        `;
+
+        return anleitungsschritte.rows;
+    } catch (error) {
+        console.error('Datenbankfehler: ', error);
+        throw new Error('Fehler beim holen der Anleitungsschritte');
+    }
+}
+
+
+export async function fetchUser() {
+
+    try {
+        const data = await sql<User>`
+        SELECT
+            id,
+            name,
+            email,
+        FROM user
+        `;
+
+        return data.rows;
+    } catch {
+        console.error('Datenbankfehler: ', error);
+        throw new Error('Fehler beim holen der User');
     }
 }

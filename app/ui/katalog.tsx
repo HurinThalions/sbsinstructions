@@ -2,6 +2,7 @@ import { fetchgefilterteAnleitungen } from "../lib/data";
 import styles from '@/app/ui/Startseite/katalog.module.css';
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function Katalog({
     query,

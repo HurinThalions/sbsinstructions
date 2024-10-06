@@ -1,3 +1,12 @@
-export default function Anleitungerstellen() {
-    return <a>Hier kann man eine Anleitung erstellen</a>
+import { fetchUser } from "@/app/lib/data"
+
+export default async function Anleitungerstellen() {
+
+    const user = await fetchUser();
+
+    return (
+        <main>
+            
+        </main>
+    )
 }

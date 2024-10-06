@@ -6,19 +6,19 @@ export type Anleitung = {
     bild: string;
 }
 
-export type AnleitungKatalog = {
+
+export type Anleitungsschritt = {
+    anleitung_id: number,
     id: number;
-    anleitung_id: number;
     titel: string;
-    dauer: string;
-    datum: string;
+    beschreibung: string;
     bild: string;
+    material: string;
 }
 
-export type AnleitungForm = {
+export type User = { 
     id: string;
-    customer_id: string;
-    amount: number;
-    status: 'pending' | 'paid';
-  };
-  
+    name: string;
+    email: string;
+    password: string;
+}
