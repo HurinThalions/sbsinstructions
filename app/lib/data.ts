@@ -95,20 +95,20 @@ export async function fetchpassendeAnleitungsschritte(
 }
 
 
-export async function fetchUser() {
+// export async function fetchUser() {
 
-    try {
-        const data = await sql<User>`
-        SELECT
-            id,
-            name,
-            email,
-        FROM user
-        `;
+//     try {
+//         const data = await sql<User>`
+//         SELECT
+//             id,
+//             name,
+//             email,
+//         FROM user
+//         `;
 
-        return data.rows;
-    } catch {
-        console.error('Datenbankfehler: ', error);
-        throw new Error('Fehler beim holen der User');
-    }
-}
+//         return data.rows;
+//     } catch {
+//         console.error('Datenbankfehler: ', error);
+//         throw new Error('Fehler beim holen der User');
+//     }
+// }
