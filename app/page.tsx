@@ -20,13 +20,15 @@ export default async function Start({
 
   return (
     <main>
-      <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
+      <div className="w-full items-center justify-between">
+      <div className="mt-4 flex items-center justify-between gap-2 md:mt-8 m-40">
         <Suche placeholder="Anleitungen durchsuchen"/>
       </div>
-      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
+      <div className="w-full items-center justify-between">
         <Suspense fallback={<KatalogSkeleton />}>
           <Katalog />
         </Suspense>
+      </div>
       </div>
     </main>
   );

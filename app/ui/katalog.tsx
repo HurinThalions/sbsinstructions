@@ -7,10 +7,11 @@ export default async function Katalog() {
     const anleitungen = await fetchAnleitungen();
 
     return (
-        <div className={styles.hintergrund}>
-            <h1>Katalog</h1>
-            <table className={styles.container}>
-                <thead>
+        <div className="flex flex-col m-20">
+        <div className="overflow-hidden">
+            <h1>Anleitungen</h1>
+            <table className="min-w-full text-center">
+                <thead className="border-b">
                     <tr>
                         <th>Titel</th>
                         <th>Dauer</th>
@@ -21,23 +22,30 @@ export default async function Katalog() {
                 <tbody>
                     {anleitungen.map((anleitung) => (
                         <tr key={anleitung.id}>
-                            <td>{anleitung.id}</td>
                             <td>{anleitung.titel}</td>
                             <td>{anleitung.dauer}</td>
                             <td>{anleitung.datum}</td>
                             <td>
                                 <Image 
-                                    src={`/public/${anleitung.bild}`} 
+                                    src={`${anleitung.bild}`} 
                                     alt={anleitung.titel} 
                                     width={100}
                                     height={100}
                                     className="hidden md:block"
+                                />
+                                <Image
+                                    src={`${anleitung.bild}`} 
+                                    alt={anleitung.titel} 
+                                    width={50}
+                                    height={50}
+                                    className="block md:hidden"
                                 />
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+        </div>
         </div>
     );
 }
