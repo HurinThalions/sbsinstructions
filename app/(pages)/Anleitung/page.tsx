@@ -1,3 +1,8 @@
-export default function Anleitung() {
-    return <p>Anleitungsseite</p>
+export default function Anleitungdurchgehen() {
+
+    return (
+        <main>
+            
+        </main>
+    )
 }
