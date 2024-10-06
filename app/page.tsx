@@ -14,9 +14,8 @@ export default async function Start({
     page?: string;
   };
 }) {
-
   const query = searchParams?.query || '';
-  const currenPage = Number(searchParams?.page) || 1;
+  const currentPage = Number(searchParams?.page) || 1;
 
   return (
     <main >
@@ -25,8 +24,8 @@ export default async function Start({
         <Suche placeholder="Anleitungen durchsuchen"/>
       </div>
       <div className="w-full items-center justify-between">
-        <Suspense fallback={<KatalogSkeleton />}>
-          <Katalog />
+        <Suspense key={query + currentPage} fallback={<KatalogSkeleton />}>
+          <Katalog query={query} currentPage={currentPage}/>
         </Suspense>
       </div>
       </div>

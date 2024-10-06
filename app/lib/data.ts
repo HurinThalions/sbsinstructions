@@ -12,7 +12,7 @@ export async function fetchAnleitungen() {
     const anleitungen = data.rows;
     return anleitungen;
     } catch (error) {
-        console.error('Datenbank fehler', error);
+        console.error('Datenbankfehler1: ', error);
         throw new Error('Anleitungen holen fehlgeschlagen');
     }
 }
@@ -30,7 +30,34 @@ export async function fetchletzteAnleitung() {
         const anleitung = data.rows;
         return anleitung;
     } catch (error) {
-        console.error('Datenbank fehler: ', error);
+        console.error('Datenbankfehler2: ', error);
         throw new Error('Fehler beim holen der letzten Anleitung');
+    }
+}
+
+const ITEMS_PER_PAGE = 6;
+
+export async function fetchgefilterteAnleitungen(
+    query: string, 
+    currentPage: number,
+) {
+    const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
+    try {
+        const anleitungen = await sql<Anleitung>`
+        SELECT
+            anleitungen.id,
+            anleitungen.titel,
+            anleitungen.dauer,
+            anleitungen.datum,
+            anleitungen.bild
+        FROM anleitungen
+        LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+        `;
+
+        return anleitungen.rows;
+    } catch (error) {
+        console.error('Datenbankfehler3: ', error);
+        throw new Error('Fehler beim Filtern der Anleitungen');
     }
 }

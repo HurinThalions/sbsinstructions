@@ -1,10 +1,17 @@
-import { fetchAnleitungen } from "../lib/data";
+import { fetchAnleitungen, fetchgefilterteAnleitungen } from "../lib/data";
 import styles from '@/app/ui/Startseite/katalog.module.css';
 
 import Image from "next/image";
 
-export default async function Katalog() {
-    const anleitungen = await fetchAnleitungen();
+export default async function Katalog({
+    query,
+    currentPage,
+}: {
+    query: string;
+    currentPage: number;
+
+}) {
+    const anleitungen = await fetchgefilterteAnleitungen(query, currentPage);
 
     return (
         <div className="flex flex-col m-20">
