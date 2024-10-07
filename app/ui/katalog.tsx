@@ -16,9 +16,9 @@ export default async function Katalog({
 
     return (
         <div className="flex flex-col ">
-            <div className="overflow-hidden">
-                <h1 className="">Anleitungen</h1>
-                <table className={`min-w-full text-center ${styles.container}`}>
+            <div className={`overflow-hidden ${styles.container}`}>
+                <h1 className="text-center min-w-full mb-7">Anleitungen</h1>
+                <table className={`min-w-full text-center `}>
                     <thead className="border-b">
                         <tr>
                             <th>Titel</th>
@@ -30,10 +30,10 @@ export default async function Katalog({
                     <tbody>
                         {anleitungen.map((anleitung) => (
                             <tr key={anleitung.id} className="">
-                                <td className=" px-6 py-4 text-sm " >{anleitung.titel}</td>
-                                <td className=" px-6 py-4 text-sm">{anleitung.dauer}</td>
-                                <td className="px-6 py-4 text-sm">{anleitung.datum}</td>
-                                <td className="px-6 py-4 text-sm">
+                                <td className=" px-6 py-4 text-sm border-b" >{anleitung.titel}</td>
+                                <td className=" px-6 py-4 text-sm border-b">{anleitung.dauer}</td>
+                                <td className="px-6 py-4 text-sm border-b">{anleitung.datum}</td>
+                                <td className="px-6 py-4 text-sm border-b">
                                     <Image 
                                         src={`${anleitung.bild}`} 
                                         alt={anleitung.titel} 
