@@ -17,7 +17,7 @@ export default async function Katalog({
     return (
         <div className="flex flex-col place-items-center">
             <div className={`overflow-hidden ${styles.container}`}>
-                <h1 className="text-center min-w-full mb-7">Anleitungen</h1>
+                <h1 className="text-center text-xl font-bold min-w-full mb-12">Anleitungen</h1>
                 <table className={`min-w-full text-center `}>
                     <thead className="border-b">
                         <tr>
