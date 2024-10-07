@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { UserGroupIcon } from "@heroicons/react/16/solid";
-import styles from '@/app/ui/topbar.module.css'
+import styles from '@/app/ui/css/topbar.module.css';
 
 const Navbar = () => {
     const [nav, setNav] = useState(false);

@@ -1,6 +1,8 @@
 import { ArrowRightIcon } from "@heroicons/react/16/solid";
 import { AtSymbolIcon, KeyIcon } from "@heroicons/react/16/solid";
 
+import { Button } from "./button";
+
 export default function LoginForm() {
 
     return (
@@ -50,9 +52,9 @@ export default function LoginForm() {
               </div>
             </div>
           </div>
-          {/* <Button className="mt-4 w-full">
+          <Button className="mt-4 w-full">
             Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
-          </Button> */}
+          </Button>
           <div className="flex h-8 items-end space-x-1">
             {/* Add form errors here */}
           </div>
