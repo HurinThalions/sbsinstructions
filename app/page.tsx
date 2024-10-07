@@ -21,7 +21,7 @@ export default async function Start({
   return (
     <main >
       <div className="w-full items-center justify-between">
-      <div className="mt-10 flex items-center justify-between gap-2 md:mt-8 m-20">
+      <div className="mt-10 flex items-center justify-between gap-2 md:mt-8 m-10">
         <Suche placeholder="Anleitungen durchsuchen"/>
       </div>
       <div className="w-full items-center justify-between">
