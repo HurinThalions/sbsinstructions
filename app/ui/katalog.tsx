@@ -15,7 +15,7 @@ export default async function Katalog({
     const anleitungen = await fetchgefilterteAnleitungen(query, currentPage);
 
     return (
-        <div className="flex flex-col ">
+        <div className="flex flex-col place-items-center">
             <div className={`overflow-hidden ${styles.container}`}>
                 <h1 className="text-center min-w-full mb-7">Anleitungen</h1>
                 <table className={`min-w-full text-center `}>
