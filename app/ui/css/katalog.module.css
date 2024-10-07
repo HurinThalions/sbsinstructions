@@ -8,6 +8,8 @@
 }  
 
 .container {
+    display: flex;
+    flex-direction: column;
     background: linear-gradient(to bottom, #96d1f7, #3c5261);
     padding: 10px;
     box-sizing: border-box;
