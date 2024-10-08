@@ -19,7 +19,7 @@ const Navbar = () => {
     {
         name: 'Profil',
         id: 2,
-        link: 'Login',
+        link: 'signin',
     },
     {
         name: 'Anleitungen erstellen',
@@ -68,7 +68,7 @@ const Navbar = () => {
             </a>
         </div>
         <div className={styles.boxumProfil}>
-            <a className={styles.profil} href="/Login">
+            <a className={styles.profil} href="/signin">
             <Image
                 src={'./Profil_Logo.svg'}
                 width={60}
