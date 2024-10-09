@@ -65,7 +65,7 @@ export default function SignupForm() {
           </div>
         </div>
         <Button className="mt-4 w-full" aria-disabled={isPending}>
-          Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+          Sign up <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
         <div
           className="flex h-8 items-end space-x-1"
@@ -79,13 +79,6 @@ export default function SignupForm() {
             </>
           )}
         </div>
-        {/* <div className='mt-3 mb-1 text-xl'>Noch kein Account?
-        <Link href="signup">
-            <Button className="mt-4 w-full" >
-                Sign up <ArrowRightIcon className="items-place-center ml-auto h-5 w-5 text-gray-50" />
-            </Button>
-          </Link>
-        </div> */}
       </div>
     </form>
   );
