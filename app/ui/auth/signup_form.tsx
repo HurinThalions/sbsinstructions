@@ -30,7 +30,7 @@ export default function SignupForm() {
               className="mb-3 mt-5 block text-xs font-medium text-gray-900"
               htmlFor="name"
             >
-              Ganzer Name
+              Voller Name
             </label>
             <div className="relative">
               <input
@@ -127,7 +127,7 @@ function RegisterButton() {
 
   return (
     <Button className="mt-4 w-full" aria-disabled={pending}>
-      Register <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+      Registrieren <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
     </Button>
   );
 }

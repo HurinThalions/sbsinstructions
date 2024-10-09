@@ -75,7 +75,7 @@ export async function authenticate(
         VALUES (${id}, ${name}, ${email}, ${hashedPassword})
       `
     } catch (error) {
-      return "Database Error: Failed to Create Account."
+      return "Database Error: Account erstellen fehlgeschlagen."
     }
   
     redirect('/login')
