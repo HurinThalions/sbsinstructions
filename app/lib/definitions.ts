@@ -6,7 +6,6 @@ export type Anleitung = {
     bild: string;
 }
 
-
 export type Anleitungsschritt = {
     anleitung_id: number,
     id: number;

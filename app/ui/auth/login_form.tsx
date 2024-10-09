@@ -80,9 +80,11 @@ export default function LoginForm() {
           )}
         </div>
         <div className='mt-3 mb-1 text-xl'>Noch kein Account?
-          <Button className="mt-4 w-full" aria-disabled={isPending}>
-              Sign up <ArrowRightIcon className="items-place-center ml-auto h-5 w-5 text-gray-50" />
-          </Button>
+        <Link href="signup">
+            <Button className="mt-4 w-full" >
+                Sign up <ArrowRightIcon className="items-place-center ml-auto h-5 w-5 text-gray-50" />
+            </Button>
+          </Link>
         </div>
       </div>
     </form>
