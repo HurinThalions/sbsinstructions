@@ -1,6 +1,5 @@
 'use client';
  
-import { lusitana } from '@/app/ui/fonts';
 import {
   AtSymbolIcon,
   KeyIcon,
@@ -10,6 +9,7 @@ import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from '@/app/ui/button';
 import { useFormState } from 'react-dom';
 import { authenticate } from '@/app/lib/actions';
+import Link from 'next/link';
  
 export default function LoginForm() {
   const [errorMessage, formAction, isPending] = useFormState(
@@ -20,7 +20,7 @@ export default function LoginForm() {
   return (
     <form action={formAction} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-        <h1 className={`${lusitana.className} mb-3 text-2xl`}>
+        <h1 className='mb-3 text-2xl'>
           Please log in to continue.
         </h1>
         <div className="w-full">
@@ -78,6 +78,11 @@ export default function LoginForm() {
               <p className="text-sm text-red-500">{errorMessage}</p>
             </>
           )}
+        </div>
+        <div className='mt-3 mb-1 text-xl'>Noch kein Account?
+          <Button className="mt-4 w-full" aria-disabled={isPending}>
+              Sign up <ArrowRightIcon className="items-place-center ml-auto h-5 w-5 text-gray-50" />
+          </Button>
         </div>
       </div>
     </form>
