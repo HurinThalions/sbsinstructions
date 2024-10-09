@@ -21,7 +21,7 @@ export default function LoginForm() {
     <form action={formAction} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
         <h1 className='mb-3 text-2xl'>
-          Please log in to continue.
+          Zum Fortfahren bitte einloggen.
         </h1>
         <div className="w-full">
           <div>
@@ -65,7 +65,7 @@ export default function LoginForm() {
           </div>
         </div>
         <Button className="mt-4 w-full" aria-disabled={isPending}>
-          Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+          Einloggen <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
         <div
           className="flex h-8 items-end space-x-1"
@@ -82,7 +82,7 @@ export default function LoginForm() {
         <div className='mt-3 mb-1 text-xl'>Noch kein Account?
         <Link href="signup">
             <Button className="mt-4 w-full" >
-                Sign up <ArrowRightIcon className="items-place-center ml-auto h-5 w-5 text-gray-50" />
+                Registrieren <ArrowRightIcon className="items-place-center ml-auto h-5 w-5 text-gray-50" />
             </Button>
           </Link>
         </div>
