@@ -2,46 +2,55 @@
  
 import { signIn } from '@/app/auth';
 import { AuthError } from 'next-auth';
-import { arrayOutputType, z } from 'zod';
+import { z } from 'zod';
 import bcrypt from 'bcryptjs'
 import { v4 as uuidv4 } from 'uuid';
 import { sql } from '@vercel/postgres';
 import { redirect } from 'next/navigation'
 
-import { registrierung } from '../ui/auth/signup_form';
-
 export async function authenticate(
-    prevState: string | undefined,
-    formData: FormData,
-  ) {
-    try {
-      await signIn('credentials', formData);
-    } catch (error) {
-      if (error instanceof AuthError) {
-        switch (error.type) {
-          case 'CredentialsSignin':
-            return 'Ungültige Angaben.';
-          default:
-            return 'Etwas ist schief gelaufen.';
-        }
-      }
-      throw error;
+  prevState: string | undefined,
+  formData: FormData,
+) {
+
+  try {
+    const result = await signIn('credentials', {
+      redirect: false,
+      email: formData.get('email') as string,
+      password: formData.get('password') as string,
+    });
+
+    if (result?.error) {
+      return 'Ungültige Angaben.'; // Fehlerhafte Anmeldedaten
+    } else {
+      redirect('/');
     }
-    redirect('/');
+
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return 'Ungültige Angaben.';
+        default:
+          return 'Etwas ist schief gelaufen.';
+      }
+    }
+    throw error;
   }
+}
 
 const RegisterUser = z.object({
     name: z.string({
       invalid_type_error: 'Bitte namen eingeben.',
     }),
     email: z.string({
-      invalid_type_error: 'Please enter an email address.',
+      invalid_type_error: 'PBitte eine E-Mail angeben.',
     }),
     password: z.string({
-      invalid_type_error: 'Please enter a password.',
+      invalid_type_error: 'Bitte wählen Sie ein Passwort.',
     }),
     confirmPassword: z.string({
-      invalid_type_error: 'Please confirm your password.',
+      invalid_type_error: 'Bitte wiederholen Sie ihr Passwort.',
     }),
 })
 
@@ -59,14 +68,14 @@ export async function register(
   
     // If form validation fails, return errors early. Otherwise, continue.
     if (!validatedFields.success) {
-      return "Missing Fields. Failed to Create Account."
+      return "Unausgefüllte Felder. Es konnte kein Account erstellt werden"
     }
   
     const { name, email, password, confirmPassword } = validatedFields.data
   
     // Check if passwords match
     if (password !== confirmPassword) {
-      return "Passwords don't match."
+      return "Die Passworteingaben stimmen nicht überein."
     }
   
     const hashedPassword = await bcrypt.hash(password, 10)

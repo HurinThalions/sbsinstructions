@@ -131,15 +131,3 @@ function RegisterButton() {
     </Button>
   );
 }
-
-export async function registrierung(
-  name: string,
-  email: string,
-  password: string,
-  confirmpassword: string,
-) {
-  
-  const dataArr = [];
-  dataArr.push(name, email, password, confirmpassword);
-  return dataArr;
-}
