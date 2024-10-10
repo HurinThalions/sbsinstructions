@@ -2,11 +2,13 @@
  
 import { signIn } from '@/app/auth';
 import { AuthError } from 'next-auth';
-import { z } from 'zod';
+import { arrayOutputType, z } from 'zod';
 import bcrypt from 'bcryptjs'
 import { v4 as uuidv4 } from 'uuid';
 import { sql } from '@vercel/postgres';
 import { redirect } from 'next/navigation'
+
+import { registrierung } from '../ui/auth/signup_form';
 
 export async function authenticate(
     prevState: string | undefined,
@@ -18,18 +20,19 @@ export async function authenticate(
       if (error instanceof AuthError) {
         switch (error.type) {
           case 'CredentialsSignin':
-            return 'Invalid credentials.';
+            return 'Ungültige Angaben.';
           default:
-            return 'Something went wrong.';
+            return 'Etwas ist schief gelaufen.';
         }
       }
       throw error;
     }
+    redirect('/');
   }
 
-  const RegisterUser = z.object({
+const RegisterUser = z.object({
     name: z.string({
-      invalid_type_error: 'Please enter your name.',
+      invalid_type_error: 'Bitte namen eingeben.',
     }),
     email: z.string({
       invalid_type_error: 'Please enter an email address.',
@@ -40,9 +43,9 @@ export async function authenticate(
     confirmPassword: z.string({
       invalid_type_error: 'Please confirm your password.',
     }),
-  })
+})
 
-  export async function register(
+export async function register(
     prevState: string | null,
     formData: FormData,
   ) {
@@ -51,7 +54,7 @@ export async function authenticate(
       name: formData.get('name'),
       email: formData.get('email'),
       password: formData.get('password'),
-      confirmPassword: formData.get('confirm-password'),
+      confirmPassword: formData.get('confirmpassword'),
     })
   
     // If form validation fails, return errors early. Otherwise, continue.
@@ -71,12 +74,13 @@ export async function authenticate(
   
     try {
       await sql`
-        INSERT INTO users (id, name, email, password)
-        VALUES (${id}, ${name}, ${email}, ${hashedPassword})
+        INSERT INTO users
+        VALUES (${id}, ${name}, ${email}, ${hashedPassword});
       `
     } catch (error) {
-      return "Database Error: Account erstellen fehlgeschlagen."
+      console.error('Datenbankfehler: ', error);
+      throw new Error('Fehler beim abspeichern des neuen Nutzers');
     }
   
-    redirect('/login')
-  }
+    redirect('/signin')
+}
