@@ -2,8 +2,6 @@
 
 export default async function Anleitungerstellen() {
 
-    // const user = await fetchUser();
-
     return (
         <main>
             
