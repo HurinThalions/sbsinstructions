@@ -1,18 +1,14 @@
 'use client'
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+
 import { UserGroupIcon } from "@heroicons/react/16/solid";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-
 import styles from '@/app/ui/css/topbar.module.css';
- 
 
-const Navbar = ({ setPopupMessage }: { setPopupMessage: (message: string) => void }) => {
+const Navbar = () => {
     const [nav, setNav] = useState(false);
-    const { data: session } = useSession();
-    const router = useRouter();
 
   const links = [
     {
@@ -34,20 +30,6 @@ const Navbar = ({ setPopupMessage }: { setPopupMessage: (message: string) => voi
 
   ];
 
-  const handleCreateClick = (e:React.MouseEvent) => {
-    e.preventDefault();
-
-    if (session) {
-        router.push('/Anleitungerstellen');
-    } else {
-
-        setPopupMessage('Bitte einloggen, um eine Anleitung zu erstellen. Sie werden zur Login Seite weitergeleitet.')
-        setTimeout(() => {
-            router.push('/signin');
-        }, 1500);
-    }
-  }
-
   return (
     <div className={styles.body}>
         <div className={styles.header}>
@@ -68,7 +50,7 @@ const Navbar = ({ setPopupMessage }: { setPopupMessage: (message: string) => voi
                     />
                 </a>
         <div className={styles.boxumAErstellen}>
-            <a className={styles.aErstellen} href="#" onClick={handleCreateClick}>
+            <a className={styles.aErstellen} href="/Anleitungerstellen">
                 <Image
                 src={'./Anleitunghinzufuegen.svg'}
                 width={60}
