@@ -1,10 +1,8 @@
-import Image from "next/image";
-import clsx from "clsx";
 import { Suspense } from "react";
 
 import { KatalogSkeleton } from "./ui/skeletons";
 import Katalog from "./ui/katalog";
-import Suche from "@/app/ui/suche";
+import Suche from "@/src/app/ui/suche";
 
 
 export default async function Start({
