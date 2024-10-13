@@ -1,4 +1,4 @@
-import styles from '@/src/app/ui/css/katalog.module.css';
+import styles from '@/app/ui/css/katalog.module.css';
 
   export function KatalogSkeleton() {
     return (

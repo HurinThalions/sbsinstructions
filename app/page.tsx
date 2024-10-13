@@ -2,7 +2,7 @@ import { Suspense } from "react";
 
 import { KatalogSkeleton } from "./ui/skeletons";
 import Katalog from "./ui/katalog";
-import Suche from "@/src/app/ui/suche";
+import Suche from "@/app/ui/suche";
 
 
 export default async function Start({

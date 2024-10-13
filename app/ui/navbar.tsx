@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 import { UserGroupIcon } from "@heroicons/react/16/solid";
-import styles from '@/src/app/ui/css/topbar.module.css';
+import styles from '@/app/ui/css/topbar.module.css';
 
 const Navbar = () => {
     const [nav, setNav] = useState(false);

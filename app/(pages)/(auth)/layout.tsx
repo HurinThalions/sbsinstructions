@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { inter } from '@/src/app/ui/fonts';
+import { inter } from '@/app/ui/fonts';
 
 export default function AuthPage(
     { children }: { children:React.ReactNode})

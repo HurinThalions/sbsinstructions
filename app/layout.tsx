@@ -3,7 +3,7 @@ import Navbar from "./ui/navbar";
 import { SessionProvider } from "next-auth/react";
 
 import "./globals.css";
-import { inter } from '@/src/app/ui/fonts';
+import { inter } from '@/app/ui/fonts';
 
 
 export const metadata: Metadata = {
