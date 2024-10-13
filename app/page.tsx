@@ -1,5 +1,3 @@
-import Image from "next/image";
-import clsx from "clsx";
 import { Suspense } from "react";
 
 import { KatalogSkeleton } from "./ui/skeletons";
