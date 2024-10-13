@@ -1,6 +1,6 @@
 'use server';
  
-import { signIn } from '@/app/auth';
+import { signIn } from '@/src/auth';
 import { AuthError } from 'next-auth';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs'
