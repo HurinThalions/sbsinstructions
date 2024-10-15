@@ -1,7 +1,6 @@
 import { sql } from "@vercel/postgres";
 
 import { Anleitung, Anleitungsschritt, User } from "./definitions";
-import { error } from "console";
 
 export async function fetchAnleitungen() {
 
@@ -17,7 +16,6 @@ export async function fetchAnleitungen() {
         throw new Error('Anleitungen holen fehlgeschlagen');
     }
 }
-
 
 export async function fetchletzteAnleitung() {
 
