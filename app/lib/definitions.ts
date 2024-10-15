@@ -1,5 +1,5 @@
 export type Anleitung = {
-    id: string;
+    id: number;
     titel: string;
     dauer: string;
     datum: string;
