@@ -1,6 +1,6 @@
 import { inter } from '@/app/ui/fonts';
 
-export default function AuthLayout(
+export default function AnleitungsschritteLayout(
     { children }: { children:React.ReactNode})
 {
     return(
