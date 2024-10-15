@@ -1,18 +1,20 @@
-import { fetchgefilterteAnleitungen } from "../lib/data";
-import styles from '@/app/ui/css/katalog.module.css';
+'use client';
 
+import { useState } from 'react';
+import styles from '@/app/ui/css/katalog.module.css';
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 
-export default async function Katalog({
-    query,
-    currentPage,
-}: {
-    query: string;
-    currentPage: number;
+export default function KatalogClient({ anleitungen }: { anleitungen: any[] }) {
 
-}) {
-    const anleitungen = await fetchgefilterteAnleitungen(query, currentPage);
+    const router = useRouter();
+    const [clickedItem, setClickedItem] = useState<string | null>(null);
+
+    const handleClick = (id: string) => {
+
+        router.push(`/Anleitung/${id}`)
+    };
 
     return (
         <div className="flex flex-col place-items-center">
@@ -29,9 +31,15 @@ export default async function Katalog({
                     </thead>
                     <tbody>
                         {anleitungen.map((anleitung) => (
-                            <tr key={anleitung.id} className="">
-                                <td className=" px-6 py-4 text-sm border-b" >{anleitung.titel}</td>
-                                <td className=" px-6 py-4 text-sm border-b">{anleitung.dauer}</td>
+                            <tr
+                                key={anleitung.id}
+                                className="cursor-pointer hover:bg-gray-200"
+                                onClick={() => handleClick(anleitung.id)}
+                            >
+                                <td className="px-6 py-4 text-sm border-b">
+                                    {anleitung.titel}
+                                </td>
+                                <td className="px-6 py-4 text-sm border-b">{anleitung.dauer}</td>
                                 <td className="px-6 py-4 text-sm border-b">{anleitung.datum}</td>
                                 <td className="px-6 py-4 text-sm border-b">
                                     <Image 

@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 
 import { KatalogSkeleton } from "./ui/skeletons";
-import Katalog from "./ui/katalog";
 import Suche from "@/app/ui/suche";
+import KatalogServer from "./ui/katalog-server";
 
 
 export default async function Start({
@@ -24,7 +24,7 @@ export default async function Start({
       </div>
       <div className="w-full items-center justify-between">
         <Suspense key={query + currentPage} fallback={<KatalogSkeleton />}>
-          <Katalog query={query} currentPage={currentPage}/>
+          <KatalogServer query={query} currentPage={currentPage}></KatalogServer>
         </Suspense>
       </div>
       </div>
