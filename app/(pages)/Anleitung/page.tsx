@@ -1,6 +1,6 @@
 import Overview from "@/app/ui/anleitungen/overview"
 
-export default function Anleitungdurchgehen() {
+export default function AnleitungdurchgehenPage() {
 
     return (
         <main>
