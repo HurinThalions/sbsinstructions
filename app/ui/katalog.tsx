@@ -1,18 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import styles from '@/app/ui/css/katalog.module.css';
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from 'next/navigation';
+
+import styles from '@/app/ui/css/katalog.module.css';
+import formatTitleForUrl from '@/app/lib/formattitel';
 
 export default function KatalogClient({ anleitungen }: { anleitungen: any[] }) {
 
     const router = useRouter();
     const [clickedItem, setClickedItem] = useState<string | null>(null);
 
-    const handleClick = (id: string) => {
-
+    const handleClick = (id: string, titel: string) => {
+        const formatierterTitel = formatTitleForUrl(titel)
         router.push(`/Anleitung/${id}`)
     };
 
@@ -33,12 +34,10 @@ export default function KatalogClient({ anleitungen }: { anleitungen: any[] }) {
                         {anleitungen.map((anleitung) => (
                             <tr
                                 key={anleitung.id}
-                                className="cursor-pointer hover:bg-gray-200"
-                                onClick={() => handleClick(anleitung.id)}
+                                className={`${styles.row} cursor-pointer hover:bg-gray-100`}
+                                onClick={() => handleClick(anleitung.id, anleitung.titel)}
                             >
-                                <td className="px-6 py-4 text-sm border-b">
-                                    {anleitung.titel}
-                                </td>
+                                <td className="px-6 py-4 text-sm border-b">{anleitung.titel}</td>
                                 <td className="px-6 py-4 text-sm border-b">{anleitung.dauer}</td>
                                 <td className="px-6 py-4 text-sm border-b">{anleitung.datum}</td>
                                 <td className="px-6 py-4 text-sm border-b">
