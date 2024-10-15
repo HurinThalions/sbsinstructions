@@ -1,19 +1,21 @@
 export type Anleitung = {
-    id: number;
+    id: string;
     titel: string;
     dauer: string;
     datum: string;
     bild: string;
+    schritte?: Anleitungsschritt[];  // Optional: Liste der Anleitungsschritte
 }
 
 export type Anleitungsschritt = {
-    anleitung_id: number,
     id: number;
     titel: string;
     beschreibung: string;
     bild: string;
     material: string;
+    anleitung_id: string;  // Fremdschlüssel zur Anleitung
 }
+
 
 export type User = { 
     id: string;
