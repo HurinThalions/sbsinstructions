@@ -36,24 +36,15 @@ export async function fetchgefilterteAnleitungen(
     }
 }
 
-export async function fetchpassendeAnleitung(
-    id: number,
-) {
-    try {
-        const anleitung = await sql<Anleitung>`
-        SELECT
-            anleitungen.titel,
-            anleitungen.dauer,
-            anleitungen.datum,
-            anleitungen.bild
-        FROM anleitungen
-        WHERE
-            anleitungen.id LIKE ${id}`
-    } catch (error) {
-        console.error('Datenbankfehler: ', error);
-        throw new Error('Fehler beim holen der richtigen Anleitung');
-    }
-}
+export async function fetchAnleitungMitSchritten(anleitungId: string) {
+    const anleitung = await sql<Anleitung[]>`
+      SELECT * 
+      FROM Anleitungen
+      JOIN Anleitungsschritte ON Anleitungen.id = Anleitungsschritte.anleitung_id
+      WHERE Anleitungen.id = ${anleitungId}
+    `;
+    return anleitung;
+  }
 
 export async function fetchpassendeAnleitungsschritte(
     titel: string,
