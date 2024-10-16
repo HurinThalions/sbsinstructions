@@ -36,14 +36,34 @@ export async function fetchgefilterteAnleitungen(
     }
 }
 
-export async function fetchAnleitungMitSchritten(anleitungId: string) {
-    const anleitung = await sql<Anleitung[]>`
+export async function fetchAnleitungMitSchritten(id: string) {
+    
+    try {
+    const anleitungHolen = await sql<Anleitung>`
       SELECT * 
-      FROM Anleitungen
-      JOIN Anleitungsschritte ON Anleitungen.id = Anleitungsschritte.anleitung_id
-      WHERE Anleitungen.id = ${anleitungId}
+      FROM anleitungen
+      WHERE Anleitungen.id = ${id}
     `;
+
+    const anleitung = anleitungHolen.rows[0];
+
+    if(!anleitung) {
+        throw new Error('Anleitung nicht gefunden');
+    }
+
+    const schritteHolen = await sql<Anleitungsschritt>`
+        SELECT *
+        FROM anleitungsschritte
+        WHERE anleitung_id = ${id}`;
+
+    anleitung.schritte = schritteHolen.rows;
+
     return anleitung;
+
+    } catch (error) {
+        console.error('Datenbankfehler: ', error);
+        throw new Error('Fehler beim holen der Anleitung aus der Datenbank');
+    }
   }
 
 export async function fetchpassendeAnleitungsschritte(
