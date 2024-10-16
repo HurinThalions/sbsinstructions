@@ -11,10 +11,9 @@ export default async function AnleitungPage({
 
   return (
     <main>
-      <div className="flow-root display-flex">
         <div className="float-left border-solid border-2 border-black rounded-lg min-w-[40%]">
           <h1 className="m-2">{anleitung.titel}</h1>
-          <p className="m-2">Dauer: {anleitung.dauer}</p>
+          <p className="m-2">Dauer: {anleitung.dauer} min</p>
           <p className="m-2">Datum: {anleitung.datum}</p>
 
           {anleitung.schritte?.map(schritt => (
@@ -35,7 +34,7 @@ export default async function AnleitungPage({
             width={600}
             height={400}
             alt="Logo"
-            className="hidden lg:block"
+            className="rounden-xl hidden lg:block"
           />
           <Image
             src={'/Testbild.jpg'}
@@ -45,7 +44,6 @@ export default async function AnleitungPage({
             className="block lg:hidden"
           />
         </div>
-      </div>
     </main>
   );
 }
