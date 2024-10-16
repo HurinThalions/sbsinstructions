@@ -59,8 +59,8 @@ const Navbar = () => {
                 />
                 <Image
                 src={'/Anleitunghinzufuegen.svg'}
-                width={30}
-                height={30}
+                width={40}
+                height={40}
                 alt="Anleitung erstellen"
                 className="block md:hidden"
                 />
