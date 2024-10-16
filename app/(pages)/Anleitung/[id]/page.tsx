@@ -12,16 +12,15 @@ export default async function AnleitungPage({
   return (
     <main>
       <div className="flow-root display-flex">
-        <div className="float-left border-solid border-2 border-black rounded-lg">
-          <h1>{anleitung.titel}</h1>
-          <p>Dauer: {anleitung.dauer}</p>
-          <p>Datum: {anleitung.datum}</p>
+        <div className="float-left border-solid border-2 border-black rounded-lg min-w-[40%]">
+          <h1 className="m-2">{anleitung.titel}</h1>
+          <p className="m-2">Dauer: {anleitung.dauer}</p>
+          <p className="m-2">Datum: {anleitung.datum}</p>
 
           {anleitung.schritte?.map(schritt => (
-            <div key={schritt.id}>
-              <h2>{schritt.titel}</h2>
-              <p>{schritt.beschreibung}</p>
-            </div>
+            <ul className="m-1" key={schritt.id} >
+              <li> - {schritt.titel}</li>
+            </ul>
           ))}
 
           <Link href={`/Anleitung/${params.id}/schritte`}>
@@ -30,7 +29,7 @@ export default async function AnleitungPage({
             </button>
           </Link>
         </div>
-        <div className="lg:max-w-[40vw] lg:max-h-[45] rounded-lg float-right ml-[2vw]">
+        <div className="lg:max-w-[40vw] lg:max-h-[45] rounded-lg float-right min-w-[40%]">
           <Image
             src={'/Testbild.jpg'}
             width={600}
