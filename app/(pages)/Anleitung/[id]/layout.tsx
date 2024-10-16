@@ -7,7 +7,7 @@ export default function AnleitungLayout({
   }>) {
 
     return (  
-        <div className={`${inter.className} antialiased flow-root display-flex p-6 md:overflow-y-auto md:p-12`}>
+        <div className={`${inter.className} antialiased flow-root display-flex md:overflow-y-auto md:p-6`}>
             {children}
         </div>
 

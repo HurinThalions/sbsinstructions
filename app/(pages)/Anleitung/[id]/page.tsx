@@ -14,6 +14,7 @@ export default function AnleitungPage({
         <Suspense fallback={<AnleitungSkeleton/>}>
             <Overview params={params}/>
         </Suspense>
+
     </main>
   );
 }

@@ -14,37 +14,41 @@ export default async function Overview({
 
     return (
         <>
+            <h1 className="text-center mb-4">Überblick</h1>
             <div className="float-left border-solid border-2 border-black rounded-lg min-w-[40%]">
-              <h1 className="m-2">{anleitung.titel}</h1>
-              <p className="m-2">Dauer: {anleitung.dauer} min</p>
-              <p className="m-2">Datum: {anleitung.datum}</p>
+              <h1 className="mb-2">{anleitung.titel}</h1>
+              <p className="">Dauer: {anleitung.dauer} min</p>
+              <p className="mb-2">Datum: {anleitung.datum}</p>
 
               {anleitung.schritte?.map(schritt => (
                 <ul className="m-1" key={schritt.id} >
                   <li> - {schritt.titel}</li>
                 </ul>
               ))}
-
-                <Link href={`/Anleitung/${params.id}/schritte`} className={clsx("text-blue-500 hover:underline")}>
-                    <button className={clsx("btn btn-primary mt-4 m-2", "text-blue-500")}>
-                        Zu den Schritten
-                    </button>
-                </Link>
+            <Link
+                href={{
+                pathname: `/Anleitung/${params.id}/schritte`,
+                query: { schritte: JSON.stringify(anleitung.schritte) }
+                }} className={clsx("text-blue-500 hover:underline")}>
+                <button className={clsx("btn btn-primary mt-4 m-2", "text-blue-500")}>
+                Zu den Schritten
+                </button>
+            </Link>
             </div>
             <div className="lg:max-w-[40vw] lg:max-h-[45] rounded-lg float-right min-w-[40%]">
               <Image
                 src={'/Testbild.jpg'}
                 width={550}
-                height={350}
+                height={330}
                 alt="Logo"
-                className="rounden-xl hidden lg:block"
+                className="rounded-lg hidden lg:block"
               />
               <Image
                 src={'/Testbild.jpg'}
                 width={150}
                 height={150}
                 alt="Logo"
-                className="block lg:hidden"
+                className="rounded-lg block lg:hidden"
               />
             </div>
         </>
