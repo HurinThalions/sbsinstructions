@@ -13,7 +13,9 @@ export function AnleitungSkeleton() {
   return (
     <div className="flow-root display-flex p-6 md:overflow-y-auto md:p-12">
       <div className="float-left border-solid border-2 border-black rounded-lg min-w-[40%]"></div>
-      <div className="lg:max-w-[40vw] lg:max-h-[45] rounded-lg float-right min-w-[40%] border-b border-black"></div>
+      <div className="lg:max-w-[40vw] lg:max-h-[45] rounded-lg float-right min-w-[40%] border-b border-black">
+        <p>Das entsprechende Bild wird gerade geladen.</p>
+      </div>
     </div>
   )
 }
