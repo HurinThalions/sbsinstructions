@@ -1,10 +1,10 @@
-import Overview from "@/app/ui/anleitungen/overview"
+import Overview from "@/app/ui/anleitungen/overview";
 
 export default function AnleitungPage() {
 
     return (
         <main>
-            
+            <Overview/>
         </main>
     )
 }

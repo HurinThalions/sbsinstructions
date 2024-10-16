@@ -4,7 +4,7 @@ export type Anleitung = {
     dauer: string;
     datum: string;
     bild: string;
-    schritte?: Anleitungsschritt[];  // Optional: Liste der Anleitungsschritte
+    schritte?: Anleitungsschritt[];
 }
 
 export type Anleitungsschritt = {
@@ -13,7 +13,7 @@ export type Anleitungsschritt = {
     beschreibung: string;
     bild: string;
     material: string;
-    anleitung_id: string;  // Fremdschlüssel zur Anleitung
+    anleitung_id: string;
 }
 
 
