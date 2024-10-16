@@ -34,14 +34,14 @@ const Navbar = () => {
         <div className={styles.header}>
                 <a className={styles.logocontainer} href="/">
                     <Image
-                        src={'./Logo.svg'}
+                        src={'/Logo.svg'}
                         width={190}
                         height={95}
                         alt="Logo"
                         className="hidden md:block"
                     />
                     <Image
-                        src={'./Logo.svg'}
+                        src={'/Logo.svg'}
                         width={95}
                         height={47}
                         alt="Logo"
@@ -51,14 +51,14 @@ const Navbar = () => {
         <div className={styles.boxumAErstellen}>
             <a className={styles.aErstellen} href="/Anleitungerstellen">
                 <Image
-                src={'./Anleitunghinzufuegen.svg'}
+                src={'/Anleitunghinzufuegen.svg'}
                 width={60}
                 height={60}
                 alt="Anleitung erstellen"
                 className="hidden md:block"
                 />
                 <Image
-                src={'./Anleitunghinzufuegen.svg'}
+                src={'/Anleitunghinzufuegen.svg'}
                 width={30}
                 height={30}
                 alt="Anleitung erstellen"
@@ -69,16 +69,16 @@ const Navbar = () => {
         <div className={styles.boxumProfil}>
             <a className={styles.profil} href="/signin">
             <Image
-                src={'./Profil_Logo.svg'}
+                src={'/Profil_Logo.svg'}
                 width={60}
                 height={60}
                 alt="Profil bearbeiten"
                 className="hidden md:block"
             />
             <Image
-                src={'./Profil_Logo.svg'}
-                width={30}
-                height={30}
+                src={'/Profil_Logo.svg'}
+                width={40}
+                height={40}
                 alt="Anleitung erstellen"
                 className="block md:hidden"
             />

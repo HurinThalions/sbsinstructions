@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import clsx from "clsx";
 
 import { fetchAnleitungMitSchritten } from "@/app/lib/data";
 
@@ -24,11 +25,11 @@ export default async function Overview({
                 </ul>
               ))}
 
-              <Link href={`/Anleitung/${params.id}/schritte`}>
-                <button className="btn btn-primary mt-4">
-                  Zu den Schritten
-                </button>
-              </Link>
+                <Link href={`/Anleitung/${params.id}/schritte`} className={clsx("text-blue-500 hover:underline")}>
+                    <button className={clsx("btn btn-primary mt-4 m-2", "text-blue-500")}>
+                        Zu den Schritten
+                    </button>
+                </Link>
             </div>
             <div className="lg:max-w-[40vw] lg:max-h-[45] rounded-lg float-right min-w-[40%]">
               <Image
