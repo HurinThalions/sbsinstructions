@@ -39,24 +39,24 @@ export default function Einzelschritte({
           <p>Beschreibung:</p>
           <p>{currentStep.beschreibung}</p>
         </div>
-        <div className="border-2 border-black rounded-lg p-2">
+        <div className="border-2 border-black rounded-lg p-2 mb-4">
           <p className="font-semibold">Material:</p>
           <p>{currentStep.material}</p>
         </div>
       </div>
       {currentStep.bild && (
-        <div className="float-right w-[40%] rounded-lg ml-4">
+        <div className="float-right w-[40%] rounded-lg mb-10">
           <Image
             src={'/Testbild.jpg'}
-            width={550}
-            height={330}
+            width={500}
+            height={350}
             alt="Logo"
             className="rounded-lg hidden lg:block"
           />
           <Image
-            src={currentStep.bild}
+            src={'/Testbild.jpg'}
             width={150}
-            height={150}
+            height={100}
             alt="Logo"
             className="rounded-lg block lg:hidden"
           />
@@ -64,18 +64,18 @@ export default function Einzelschritte({
       )}
 
       {/* Anpassung für den Button- und Progressbar-Container */}
-      <div className="bottom-4 w-full flex items-center justify-between px-8">
+      <div className="fixed bottom-10 w-full flex items-center justify-center px-20">
         {/* Button für den vorherigen Schritt (links) */}
         <button
           onClick={handlePreviousStep}
           disabled={currentStepIndex === 0}
-          className="btn btn-secondary"
+          className="btn btn-secondary whitespace-nowrap"
         >
           Zurück
         </button>
 
         {/* Progressbar in der Mitte */}
-        <div className="w-full px-4">
+        <div className="w-1/3">
           <Progressbar currentStepIndex={currentStepIndex} totalSteps={schritte.length} />
         </div>
 
@@ -83,7 +83,7 @@ export default function Einzelschritte({
         <button
           onClick={handleNextStep}
           disabled={currentStepIndex === schritte.length - 1}
-          className="btn btn-primary"
+          className="btn btn-primary whitespace-nowrap"
         >
           Nächster Schritt
         </button>
