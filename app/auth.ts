@@ -17,7 +17,7 @@ async function getUser(email: string): Promise<User | undefined> {
 }
 
 export const { auth, signIn, signOut } = NextAuth({
-  ...authConfig, // authConfig wird hier eingebunden
+  ...authConfig,
   providers: [
     Credentials({
       async authorize(credentials) {
@@ -36,13 +36,11 @@ export const { auth, signIn, signOut } = NextAuth({
         const { email, password } = parsedCredentials.data;
         const user = await getUser(email);
 
-        // Überprüfung, ob Benutzer gefunden wurde
         if (!user) {
           console.log('Nutzer nicht gefunden');
           return null;
         }
 
-        // Passwortvergleich mit bcrypt
         const passwordsMatch = await bcrypt.compare(password, user.password);
 
         if (passwordsMatch) {
