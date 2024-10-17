@@ -15,11 +15,11 @@ export async function fetchgefilterteAnleitungen(
     try {
         const anleitungen = await sql<Anleitung>`
         SELECT
-            anleitungen.id,
-            anleitungen.title,
-            anleitungen.duration,
-            anleitungen.date,
-            anleitungen.image
+            id,
+            title,
+            duration,
+            date,
+            image
         FROM anleitungen
         WHERE
             anleitungen.title ILIKE ${searchQuery} OR
@@ -28,7 +28,8 @@ export async function fetchgefilterteAnleitungen(
         ORDER BY anleitungen.date DESC
         LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
         `;
-
+        console.log('Query: ', query);
+        console.log(anleitungen.rows);
         return anleitungen.rows;
     } catch (error) {
         console.error('Datenbankfehler1: ', error);

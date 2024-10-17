@@ -37,7 +37,7 @@ export default function KatalogClient({ anleitungen }: { anleitungen: any[] }) {
                             >
                                 <td className="px-6 py-4 text-sm border-b">{anleitung.title}</td>
                                 <td className="px-6 py-4 text-sm border-b">{anleitung.duration}</td>
-                                <td className="px-6 py-4 text-sm border-b">{anleitung.date}</td>
+                                <td className="px-6 py-4 text-sm border-b">{new Date(anleitung.date).toLocaleDateString()}</td>
                                 <td className="px-6 py-4 text-sm border-b">
                                     <Image 
                                         src={`${anleitung.image}`} 
