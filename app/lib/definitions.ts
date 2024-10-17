@@ -1,19 +1,21 @@
 export type Anleitung = {
     id: number;
-    titel: string;
-    dauer: string;
-    datum: string;
-    bild: string;
+    title: string;
+    duration: number;
+    date: string;
+    image?: string;
+    user: string;
+    created_at: string;
     schritte?: Anleitungsschritt[];
 }
 
 export type Anleitungsschritt = {
     id: number;
-    titel: string;
-    beschreibung: string;
-    bild: string;
-    material: string;
-    anleitung_id: string;
+    title: string;
+    description: string;
+    image?: string;
+    material?: string;
+    anleitung_id: number;
 }
 
 

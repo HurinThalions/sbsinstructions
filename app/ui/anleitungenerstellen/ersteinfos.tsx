@@ -16,16 +16,39 @@ export default function ErsteInfosaufnehmen() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Hier kannst du die Logik zum Absenden der Formulardaten implementieren
-    console.log({
-      title,
-      duration,
-      date,
-      image,
-      user: session?.user?.name, // Name des Nutzers
+  
+    const formData = new FormData(e.currentTarget);
+    const title = formData.get('title') as string;
+    const duration = formData.get('duration') as string;
+    const date = formData.get('date') as string;
+    const user = session?.user?.name || '';
+    const imageFile = formData.get('image') as File;
+  
+    // Bild als Base64-String konvertieren
+    let imageBase64 = '';
+    if (imageFile) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        imageBase64 = reader.result as string;
+      };
+      reader.readAsDataURL(imageFile);
+    }
+  
+    // Sende die Formulardaten an die API
+    const res = await fetch('/api/anleitungen', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title, duration, date, image: imageBase64, user }),
     });
+  
+    if (res.ok) {
+      alert('Anleitung erfolgreich erstellt');
+    } else {
+      const { error } = await res.json();
+      alert(`Fehler: ${error}`);
+    }
   };
 
   return (

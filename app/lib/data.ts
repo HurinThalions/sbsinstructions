@@ -16,77 +16,78 @@ export async function fetchgefilterteAnleitungen(
         const anleitungen = await sql<Anleitung>`
         SELECT
             anleitungen.id,
-            anleitungen.titel,
-            anleitungen.dauer,
-            anleitungen.datum,
-            anleitungen.bild
+            anleitungen.title,
+            anleitungen.duration,
+            anleitungen.date,
+            anleitungen.image
         FROM anleitungen
         WHERE
-            anleitungen.titel ILIKE ${searchQuery} OR
-            anleitungen.datum ILIKE ${searchQuery} OR
-            anleitungen.dauer ILIKE ${searchQuery}
-        ORDER BY anleitungen.datum DESC
+            anleitungen.title ILIKE ${searchQuery} OR
+            anleitungen.date::text ILIKE ${searchQuery} OR
+            anleitungen.duration::text ILIKE ${searchQuery}
+        ORDER BY anleitungen.date DESC
         LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
         `;
 
         return anleitungen.rows;
     } catch (error) {
-        console.error('Datenbankfehler3: ', error);
+        console.error('Datenbankfehler1: ', error);
         throw new Error('Fehler beim Filtern der Anleitungen');
     }
 }
 
 export async function fetchAnleitungMitSchritten(id: string) {
-    
     try {
-    const anleitungHolen = await sql<Anleitung>`
-      SELECT * 
-      FROM anleitungen
-      WHERE Anleitungen.id = ${id}
-    `;
+        const anleitungHolen = await sql<Anleitung>`
+            SELECT * 
+            FROM anleitungen
+            WHERE anleitungen.id = ${id}
+        `;
 
-    const anleitung = anleitungHolen.rows[0];
+        const anleitung = anleitungHolen.rows[0];
 
-    if(!anleitung) {
-        throw new Error('Anleitung nicht gefunden');
-    }
+        if (!anleitung) {
+            throw new Error('Anleitung nicht gefunden');
+        }
 
-    const schritteHolen = await sql<Anleitungsschritt>`
-        SELECT *
-        FROM anleitungsschritte
-        WHERE anleitung_id = ${id}`;
+        const schritteHolen = await sql<Anleitungsschritt>`
+            SELECT *
+            FROM anleitungsschritte
+            WHERE anleitung_id = ${id}
+            ORDER BY id
+        `;
 
-    anleitung.schritte = schritteHolen.rows;
+        anleitung.schritte = schritteHolen.rows;
 
-    return anleitung;
+        return anleitung;
 
     } catch (error) {
-        console.error('Datenbankfehler: ', error);
-        throw new Error('Fehler beim holen der Anleitung aus der Datenbank');
+        console.error('Datenbankfehler2: ', error);
+        throw new Error('Fehler beim Holen der Anleitung aus der Datenbank');
     }
-  }
+}
 
 export async function fetchpassendeAnleitungsschritte(
     titel: string,
 ) {
     try {
         const anleitungsschritte = await sql<Anleitungsschritt>`
-        SELECT
-            anleitungsschritte.anleitung_id,
-            anleitungsschritte.titel,
-            anleitungsschritte.beschreibung,
-            anleitungsschritte.bild,
-            anleitungsschritte.material
-        FROM anleitungsschritte
-        WHERE
-            anleitungsschritte.anleitung_id LIKE ${titel}
-        ORDER BY anleitungsschritte.id DESC
+            SELECT
+                anleitungsschritte.anleitung_id,
+                anleitungsschritte.title,
+                anleitungsschritte.description,
+                anleitungsschritte.image,
+                anleitungsschritte.material
+            FROM anleitungsschritte
+            WHERE
+                anleitungsschritte.title ILIKE ${`%${titel}%`}
+            ORDER BY anleitungsschritte.id DESC
         `;
 
         return anleitungsschritte.rows;
     } catch (error) {
         console.error('Datenbankfehler: ', error);
-        throw new Error('Fehler beim holen der Anleitungsschritte');
+        throw new Error('Fehler beim Holen der Anleitungsschritte');
     }
 }
 

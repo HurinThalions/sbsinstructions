@@ -10,10 +10,8 @@ import formatTitleForUrl from '@/app/lib/formattitel';
 export default function KatalogClient({ anleitungen }: { anleitungen: any[] }) {
 
     const router = useRouter();
-    const [clickedItem, setClickedItem] = useState<string | null>(null);
 
     const handleClick = (id: string, titel: string) => {
-        const formatierterTitel = formatTitleForUrl(titel)
         router.push(`/Anleitung/${id}`)
     };
 
@@ -35,22 +33,22 @@ export default function KatalogClient({ anleitungen }: { anleitungen: any[] }) {
                             <tr
                                 key={anleitung.id}
                                 className={`${styles.row} cursor-pointer hover:bg-gray-100`}
-                                onClick={() => handleClick(anleitung.id, anleitung.titel)}
+                                onClick={() => handleClick(anleitung.id, anleitung.title)}
                             >
-                                <td className="px-6 py-4 text-sm border-b">{anleitung.titel}</td>
-                                <td className="px-6 py-4 text-sm border-b">{anleitung.dauer}</td>
-                                <td className="px-6 py-4 text-sm border-b">{anleitung.datum}</td>
+                                <td className="px-6 py-4 text-sm border-b">{anleitung.title}</td>
+                                <td className="px-6 py-4 text-sm border-b">{anleitung.duration}</td>
+                                <td className="px-6 py-4 text-sm border-b">{anleitung.date}</td>
                                 <td className="px-6 py-4 text-sm border-b">
                                     <Image 
-                                        src={`${anleitung.bild}`} 
-                                        alt={anleitung.titel} 
+                                        src={`${anleitung.image}`} 
+                                        alt={anleitung.title} 
                                         width={100}
                                         height={100}
                                         className="hidden md:block"
                                     />
                                     <Image
-                                        src={`${anleitung.bild}`} 
-                                        alt={anleitung.titel} 
+                                        src={`${anleitung.image}`} 
+                                        alt={anleitung.title} 
                                         width={50}
                                         height={50}
                                         className="block md:hidden"
