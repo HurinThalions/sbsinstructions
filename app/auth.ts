@@ -1,36 +1,40 @@
 import NextAuth from 'next-auth';
-import { authConfig } from './auth.config';
-import Credentials from 'next-auth/providers/credentials';
+import CredentialsProvider from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import { sql } from '@vercel/postgres';
-import type { User } from '@/app/lib/definitions';
 import bcrypt from 'bcryptjs';
+import type { User } from '@/app/lib/definitions';
 
+// Funktion, um einen Benutzer anhand der E-Mail abzurufen
 async function getUser(email: string): Promise<User | undefined> {
   try {
     const user = await sql<User>`SELECT * FROM users WHERE email=${email}`;
     return user.rows[0];
   } catch (error) {
     console.error('Failed to fetch user:', error);
-    throw new Error('Failed to fetch user.');
+    return undefined; // Gib undefined zurück, falls ein Fehler auftritt
   }
 }
 
-export const { auth, signIn, signOut } = NextAuth({
-  ...authConfig,
+// NextAuth Konfiguration
+export default NextAuth({
   providers: [
-    Credentials({
+    CredentialsProvider({
+      name: 'Credentials',
+      credentials: {
+        email: { label: "Email", type: "email", placeholder: "email@example.com" },
+        password: { label: "Password", type: "password" },
+      },
       async authorize(credentials) {
-        const parsedCredentials = z
-          .object({
-            email: z.string().email(), 
-            password: z.string().min(6)
-          })
-          .safeParse(credentials);
+        // Validierung der Anmeldeinformationen
+        const parsedCredentials = z.object({
+          email: z.string().email(),
+          password: z.string().min(6),
+        }).safeParse(credentials);
 
         if (!parsedCredentials.success) {
           console.log('Ungültige Angaben');
-          return null;
+          return null; // Anmeldeinformationen sind ungültig
         }
 
         const { email, password } = parsedCredentials.data;
@@ -38,23 +42,43 @@ export const { auth, signIn, signOut } = NextAuth({
 
         if (!user) {
           console.log('Nutzer nicht gefunden');
-          return null;
+          return null; // Benutzer existiert nicht
         }
 
+        // Überprüfe das Passwort mit bcrypt
         const passwordsMatch = await bcrypt.compare(password, user.password);
-
-        if (passwordsMatch) {
-          console.log('Erfolgreich eingeloggt');
-          return {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-          };
-        } else {
+        if (!passwordsMatch) {
           console.log('Das Passwort ist falsch.');
-          return null;
+          return null; // Falsches Passwort
         }
+
+        // Erfolgreiche Anmeldung, Benutzerinformationen zurückgeben
+        return {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+        };
       },
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET, // Setze dein SECRET für JWT
+  pages: {
+    signIn: '/signin', // Anmeldeseite
+  },
+  callbacks: {
+    async session({ session, token }) {
+      // Füge benutzerdefinierte Felder zur Session hinzu
+      if (token) {
+        session.id = token.id;
+      }
+      return session;
+    },
+    async jwt({ token, user }) {
+      // Füge Informationen zum JWT-Token hinzu
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+  },
 });
