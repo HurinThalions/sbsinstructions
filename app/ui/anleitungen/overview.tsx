@@ -16,13 +16,13 @@ export default async function Overview({
         <>
             <h1 className="text-center font-bold mb-4">Überblick</h1>
             <div className="float-left border-solid border-2 border-black rounded-lg min-w-[40%] p-2">
-              <h1 className="mb-2 font-bold">{anleitung.titel}</h1>
-              <p className="">Dauer: {anleitung.dauer} min</p>
-              <p className="mb-2">Datum: {anleitung.datum}</p>
+              <h1 className="mb-2 font-bold">{anleitung.title}</h1>
+              <p className="">Dauer: {anleitung.duration} min</p>
+              <p className="mb-2">Datum: {anleitung.date}</p>
 
               {anleitung.schritte?.map(schritt => (
                 <ul className="m-1" key={schritt.id} >
-                  <li> - {schritt.titel}</li>
+                  <li> - {schritt.title}</li>
                 </ul>
               ))}
             <Link
