@@ -1,7 +1,5 @@
-console.log('Middleware geladen');
-
 import NextAuth from 'next-auth';
-import { authConfig } from './app/auth.config';
+import { authConfig } from './auth.config';
 import { NextResponse, NextRequest } from 'next/server';
 import { getToken } from 'next-auth/jwt'; 
 
@@ -11,14 +9,11 @@ export async function middleware(req: NextRequest) {
 
   const token = await getToken({req, secret: process.env.NEXTAUTH_SECRET });
 
-  console.log('Token: ', token);
-
   if (!token) {
     const loginURL = new URL('/signin', req.url);
     return NextResponse.redirect(loginURL);
   }
 
-  console.log('Eingeloggt, zugriff gewährt');
   return NextResponse.next();
 }
 
