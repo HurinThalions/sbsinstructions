@@ -16,13 +16,9 @@ async function getUser(email: string): Promise<User | undefined> {
   }
 }
 
-<<<<<<< HEAD
-// NextAuth Konfiguration
-export default NextAuth({
-=======
+
 export const { auth, signIn, signOut } = NextAuth({
   ...authConfig, // authConfig wird hier eingebunden
->>>>>>> parent of 60159c7 (anpassung middleware)
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -51,11 +47,8 @@ export const { auth, signIn, signOut } = NextAuth({
           return null; // Benutzer existiert nicht
         }
 
-<<<<<<< HEAD
         // Überprüfe das Passwort mit bcrypt
-=======
         // Passwortvergleich mit bcrypt
->>>>>>> parent of 60159c7 (anpassung middleware)
         const passwordsMatch = await bcrypt.compare(password, user.password);
         if (!passwordsMatch) {
           console.log('Das Passwort ist falsch.');
