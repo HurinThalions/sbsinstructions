@@ -1,28 +1,50 @@
 'use client';
- 
+
 import {
   AtSymbolIcon,
   KeyIcon,
   ExclamationCircleIcon,
 } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
-import { Button } from '@/app/ui/button';
-import { useFormState } from 'react-dom';
-import { authenticate } from '@/app/lib/actions';
+import { Button } from '@/app/ui/signin_upbutton';
+import { signIn } from 'next-auth/react';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
- 
+
 export default function LoginForm() {
-  const [errorMessage, formAction, isPending] = useFormState(
-    authenticate,
-    undefined,
-  );
- 
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isPending, setIsPending] = useState(false);
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsPending(true); // Setze den Pending-Zustand auf true
+
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+
+    // Verwende signIn zur Authentifizierung
+    const result = await signIn('credentials', {
+      redirect: false,
+      email,
+      password,
+    });
+
+    setIsPending(false); // Setze den Pending-Zustand auf false
+
+    if (result?.error) {
+      setErrorMessage('Ungültige Angaben.'); // Zeige Fehlermeldung an
+    } else {
+      router.push('/'); 
+    }
+  };
+
   return (
-    <form action={formAction} className="space-y-3">
+    <form onSubmit={handleSubmit} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-        <h1 className='mb-3 text-2xl'>
-          Zum Fortfahren bitte einloggen.
-        </h1>
+        <h1 className="mb-3 text-2xl">Zum Fortfahren bitte einloggen.</h1>
         <div className="w-full">
           <div>
             <label
@@ -79,10 +101,12 @@ export default function LoginForm() {
             </>
           )}
         </div>
-        <div className='mt-3 mb-1 text-xl'>Noch kein Account?
-        <Link href="signup">
-            <Button className="mt-4 w-full" >
-                Registrieren <ArrowRightIcon className="items-place-center ml-auto h-5 w-5 text-gray-50" />
+        <div className="mt-3 mb-1 text-xl">
+          Noch kein Account?
+          <Link href="/signup">
+            <Button className="mt-4 w-full">
+              Registrieren{' '}
+              <ArrowRightIcon className="items-place-center ml-auto h-5 w-5 text-gray-50" />
             </Button>
           </Link>
         </div>

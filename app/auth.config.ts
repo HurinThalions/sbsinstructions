@@ -1,21 +1,36 @@
-import type { NextAuthConfig } from 'next-auth';
- 
-export const authConfig = {
+import type { NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+
+export const authConfig: NextAuthOptions = {
   pages: {
     signIn: '/signin',
   },
   callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
-      const eingeloggt = !!auth?.user;
-      const aufderStartseite = nextUrl.pathname.startsWith('/');
-      if (aufderStartseite) {
-        if (eingeloggt) return true;
-        return false; // Redirect unauthenticated users to login page
-      } else if (eingeloggt) {
-        return Response.redirect(new URL('/', nextUrl));
+    async session({ session, token }) {
+      if (token) {
+        session.id = token.id;
       }
-      return true;
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
     },
   },
-  providers: [],
-} satisfies NextAuthConfig;
+  providers: [
+    CredentialsProvider({
+      name: 'Credentials',
+      credentials: {
+        email: { label: 'Email', type: 'text', placeholder: 'email@example.com' },
+        password: { label: 'Password', type: 'password' },
+      },
+      async authorize(credentials) {
+        // Die Logik zur Autorisierung bleibt in auth.ts
+        return null; // Oder falls du es hier implementierst, die entsprechende Logik.
+      },
+    }),
+  ],
+  secret: process.env.NEXTAUTH_SECRET, 
+};
