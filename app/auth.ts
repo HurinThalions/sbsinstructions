@@ -1,60 +1,72 @@
 import NextAuth from 'next-auth';
-import { authConfig } from './auth.config';
-import Credentials from 'next-auth/providers/credentials';
-import { z } from 'zod';
+import CredentialsProvider from 'next-auth/providers/credentials';
 import { sql } from '@vercel/postgres';
-import type { User } from '@/app/lib/definitions';
 import bcrypt from 'bcryptjs';
+import { JWT } from 'next-auth/jwt';
+import { Session } from 'next-auth';
+import { User } from 'next-auth';
 
-async function getUser(email: string): Promise<User | undefined> {
-  try {
-    const user = await sql<User>`SELECT * FROM users WHERE email=${email}`;
-    return user.rows[0];
-  } catch (error) {
-    console.error('Failed to fetch user:', error);
-    throw new Error('Failed to fetch user.');
-  }
-}
-
-export const { auth, signIn, signOut } = NextAuth({
-  ...authConfig,
+export const authOptions = {
   providers: [
-    Credentials({
+    CredentialsProvider({
+      name: 'Credentials',
+      credentials: {
+        email: { label: 'Email', type: 'text', placeholder: 'email@example.com' },
+        password: { label: 'Password', type: 'password' },
+      },
       async authorize(credentials) {
-        const parsedCredentials = z
-          .object({
-            email: z.string().email(), 
-            password: z.string().min(6)
-          })
-          .safeParse(credentials);
-
-        if (!parsedCredentials.success) {
-          console.log('Ungültige Angaben');
-          return null;
+        if (!credentials || !credentials.email || !credentials.password) {
+          throw new Error('Anmeldedaten fehlen');
         }
 
-        const { email, password } = parsedCredentials.data;
-        const user = await getUser(email);
+        const { email, password } = credentials;
 
-        if (!user) {
-          console.log('Nutzer nicht gefunden');
-          return null;
-        }
+        try {
+          // Suche den Benutzer in der Datenbank
+          const user = await sql`SELECT * FROM users WHERE email = ${email}`;
+          if (!user.rows.length) {
+            throw new Error('Kein Benutzer mit dieser E-Mail gefunden');
+          }
 
-        const passwordsMatch = await bcrypt.compare(password, user.password);
+          const foundUser = user.rows[0];
 
-        if (passwordsMatch) {
-          console.log('Erfolgreich eingeloggt');
-          return {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-          };
-        } else {
-          console.log('Das Passwort ist falsch.');
+          // Vergleiche das Passwort
+          const passwordsMatch = await bcrypt.compare(password, foundUser.password);
+          if (!passwordsMatch) {
+            throw new Error('Ungültiges Passwort');
+          }
+
+          // Rückgabe des Benutzers nach erfolgreicher Authentifizierung
+          return { id: foundUser.id, name: foundUser.name, email: foundUser.email };
+        } catch (error) {
+          console.error(error);
           return null;
         }
       },
     }),
   ],
-});
+  pages: {
+    signIn: '/auth/signin',
+    error: '/auth/error',
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: 'jwt' as 'jwt', // Stelle sicher, dass 'jwt' als spezifischer Wert gesetzt ist
+  },
+  callbacks: {
+    async jwt({ token, user }: { token: JWT; user?: User }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }: { session: Session; token: JWT }) {
+      if (session.user) {
+        session.user.id = token.id as string;
+      }
+      return session;
+    },
+  },
+};
+
+export default NextAuth(authOptions);

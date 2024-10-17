@@ -1,39 +1,46 @@
 'use client';
- 
-import {
-  AtSymbolIcon,
-  KeyIcon,
-  ExclamationCircleIcon,
-} from '@heroicons/react/24/outline';
-import { ArrowRightIcon } from '@heroicons/react/20/solid';
-import { Button } from '@/app/ui/signin_upbutton';
-import { useFormState } from 'react-dom';
-import { authenticate } from '@/app/lib/actions';
+
+import { ArrowRightIcon, ExclamationCircleIcon, AtSymbolIcon, KeyIcon } from '@heroicons/react/16/solid';
+import { useState } from 'react';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
- 
+
+import { SignupButton } from '../signinupbutton';
+
 export default function LoginForm() {
-  const [errorMessage, formAction, isPending] = useFormState(
-    authenticate,
-    undefined,
-  );
- 
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const email = e.currentTarget.email.value;
+    const password = e.currentTarget.password.value;
+
+    const res = await signIn('credentials', {
+      redirect: false,
+      email,
+      password,
+    });
+
+    if (res?.error) {
+      setErrorMessage('Ungültige Anmeldedaten');
+    } else {
+      window.location.href = '/';
+    }
+  };
+
   return (
-    <form action={formAction} className="space-y-3">
+    <form onSubmit={handleSubmit} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-        <h1 className='mb-3 text-2xl'>
-          Zum Fortfahren bitte einloggen.
-        </h1>
+        <h1 className='mb-3 text-2xl'>Zum Fortfahren bitte einloggen.</h1>
         <div className="w-full">
           <div>
-            <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
-              htmlFor="email"
-            >
+            <label className="mb-3 mt-5 block text-xs font-medium text-gray-900" htmlFor="email">
               Email
             </label>
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 text-left" // Hinzugefügte 'text-left'
                 id="email"
                 type="email"
                 name="email"
@@ -44,15 +51,12 @@ export default function LoginForm() {
             </div>
           </div>
           <div className="mt-4">
-            <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
-              htmlFor="password"
-            >
-              Password
+            <label className="mb-3 mt-5 block text-xs font-medium text-gray-900" htmlFor="password">
+              Passwort
             </label>
-            <div className="relative">
+            <div className="relative mb-3">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 text-left" // Hinzugefügte 'text-left'
                 id="password"
                 type="password"
                 name="password"
@@ -64,14 +68,10 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <Button className="mt-4 w-full" aria-disabled={isPending}>
+        <SignupButton className="w-full mt-4">
           Einloggen <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
-        </Button>
-        <div
-          className="flex h-8 items-end space-x-1"
-          aria-live="polite"
-          aria-atomic="true"
-        >
+        </SignupButton>
+        <div className="flex h-8 items-end space-x-1" aria-live="polite" aria-atomic="true">
           {errorMessage && (
             <>
               <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
@@ -79,11 +79,12 @@ export default function LoginForm() {
             </>
           )}
         </div>
-        <div className='mt-3 mb-1 text-xl'>Noch kein Account?
-        <Link href="signup">
-            <Button className="mt-4 w-full" >
-                Registrieren <ArrowRightIcon className="items-place-center ml-auto h-5 w-5 text-gray-50" />
-            </Button>
+        <div className='mb-3 text-xl'>
+          Noch kein Account?
+          <Link href="signup" className="w-full">
+            <SignupButton className="w-full mt-2"> {/* Hinzugefügtes w-full für Button-Breite */}
+              Registrieren <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+            </SignupButton>
           </Link>
         </div>
       </div>
