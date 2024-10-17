@@ -17,3 +17,4 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Fehler beim Erstellen der Anleitung' }, { status: 500 });
   }
 }
+

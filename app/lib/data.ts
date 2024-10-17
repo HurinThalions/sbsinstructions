@@ -28,8 +28,7 @@ export async function fetchgefilterteAnleitungen(
         ORDER BY anleitungen.date DESC
         LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
         `;
-        console.log('Query: ', query);
-        console.log(anleitungen.rows);
+        
         return anleitungen.rows;
     } catch (error) {
         console.error('Datenbankfehler1: ', error);

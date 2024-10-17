@@ -3,12 +3,12 @@
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
-export default function ErsteInfosaufnehmen() {
-  const { data: session } = useSession(); // Nutzerinformationen abrufen
+export default function ErsteInfosaufnehmen({ onAnleitungErstellt }: { onAnleitungErstellt: (id: string) => void }) {
+  const { data: session } = useSession();
   const [title, setTitle] = useState('');
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState('');
-  const [image, setImage] = useState<File | null>(null); // Für das Bild
+  const [image, setImage] = useState<File | null>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -18,15 +18,14 @@ export default function ErsteInfosaufnehmen() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     const formData = new FormData(e.currentTarget);
     const title = formData.get('title') as string;
     const duration = formData.get('duration') as string;
     const date = formData.get('date') as string;
     const user = session?.user?.name || '';
     const imageFile = formData.get('image') as File;
-  
-    // Bild als Base64-String konvertieren
+
     let imageBase64 = '';
     if (imageFile) {
       const reader = new FileReader();
@@ -35,15 +34,16 @@ export default function ErsteInfosaufnehmen() {
       };
       reader.readAsDataURL(imageFile);
     }
-  
-    // Sende die Formulardaten an die API
+
     const res = await fetch('/api/anleitungen', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, duration, date, image: imageBase64, user }),
     });
-  
+
     if (res.ok) {
+      const { id } = await res.json();  // Hier holen wir uns die ID
+      onAnleitungErstellt(id);  // Übergib die ID an die Elternkomponente
       alert('Anleitung erfolgreich erstellt');
     } else {
       const { error } = await res.json();
