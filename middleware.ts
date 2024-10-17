@@ -7,7 +7,7 @@ export async function middleware(req: NextRequest) {
   console.log('Token: ', token);
 
   if (!token) {
-    const loginURL = new URL('/signin', req.url);
+    const loginURL = new URL('auth/signin', req.url);
     return NextResponse.redirect(loginURL);
   }
   

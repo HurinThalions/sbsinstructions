@@ -4,7 +4,6 @@ import { KatalogSkeleton } from "./ui/skeletons";
 import Suche from "@/app/ui/suche";
 import KatalogServer from "./ui/katalog-server";
 
-
 export default async function Start({
   searchParams,
 }: {
