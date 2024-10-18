@@ -3,19 +3,23 @@
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
-export default function ErsteInfosaufnehmen({ onAnleitungErstellt }: { onAnleitungErstellt: (id: string) => void }) {
-  const { data: session } = useSession();
+import HolletzteAnleitung from './holanleitungsid';
+
+export default function ErsteInfosaufnehmen() {
+  const { data: session } = useSession();  // Session-Daten des Nutzers
   const [title, setTitle] = useState('');
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState('');
-  const [image, setImage] = useState<File | null>(null);
+  const [image, setImage] = useState<File | null>(null);  // Bilddatei wird gespeichert
 
+  // Funktion zum Hochladen eines Bildes
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setImage(e.target.files[0]);
     }
   };
 
+  // Funktion zum Absenden des Formulars
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -23,9 +27,10 @@ export default function ErsteInfosaufnehmen({ onAnleitungErstellt }: { onAnleitu
     const title = formData.get('title') as string;
     const duration = formData.get('duration') as string;
     const date = formData.get('date') as string;
-    const user = session?.user?.name || '';
+    const user = session?.user?.name || '';  // Nutzername
     const imageFile = formData.get('image') as File;
 
+    // Konvertiere das Bild zu Base64
     let imageBase64 = '';
     if (imageFile) {
       const reader = new FileReader();
@@ -35,6 +40,7 @@ export default function ErsteInfosaufnehmen({ onAnleitungErstellt }: { onAnleitu
       reader.readAsDataURL(imageFile);
     }
 
+    // Sende die Anleitung an den API-Endpunkt
     const res = await fetch('/api/anleitungen', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -42,8 +48,6 @@ export default function ErsteInfosaufnehmen({ onAnleitungErstellt }: { onAnleitu
     });
 
     if (res.ok) {
-      const { id } = await res.json();  // Hier holen wir uns die ID
-      onAnleitungErstellt(id);  // Übergib die ID an die Elternkomponente
       alert('Anleitung erfolgreich erstellt');
     } else {
       const { error } = await res.json();

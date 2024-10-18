@@ -67,6 +67,25 @@ export async function fetchAnleitungMitSchritten(id: string) {
     }
 }
 
+export async function fetchletzteAnleitungUser(
+    user: string
+) {
+    try {
+        const anleitungen = await sql`
+        SELECT id
+        FROM anleitungen
+        WHERE nutzername = ${user}
+        ORDER BY created_at DESC
+        LIMIT 1
+        `;
+
+        return anleitungen.rows[0]?.id || null;
+    } catch (error) {
+        console.error('Datenbankfehler3: ', error);
+        throw new Error('Fehler beim holen der letzten Anleitung. Es können keine Anleitungsschritte zur passenden Anleitung erstellt werden');
+    }
+}
+
 export async function fetchpassendeAnleitungsschritte(
     titel: string,
 ) {

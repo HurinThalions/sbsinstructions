@@ -5,6 +5,10 @@ import { useRouter } from 'next/navigation';
 export default function WeiterButton({ anleitungId }: { anleitungId: string }) {
   const router = useRouter();
 
+  if (!anleitungId) {
+    return null; // Keine ID, kein Button
+  }
+
   const handleClick = () => {
     router.push(`/Anleitungerstellen/schritterstellen/${anleitungId}`);
   };
