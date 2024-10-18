@@ -16,7 +16,7 @@ export default function KatalogClient({ anleitungen }: { anleitungen: any[] }) {
     };
 
     return (
-        <div className="flex flex-col place-items-center">
+        <div className="flex flex-col place-items-center drop-shadow">
             <div className={` ${styles.container}`}>
                 <h1 className="text-center text-xl font-bold min-w-full mb-12">Anleitungen</h1>
                 <table className={`min-w-full text-center `}>
@@ -24,7 +24,7 @@ export default function KatalogClient({ anleitungen }: { anleitungen: any[] }) {
                         <tr>
                             <th>Titel</th>
                             <th>Dauer</th>
-                            <th>Datum</th>
+                            <th className='hidden md:block'>Datum</th>
                             <th>Bild</th>
                         </tr>
                     </thead>
@@ -37,7 +37,7 @@ export default function KatalogClient({ anleitungen }: { anleitungen: any[] }) {
                             >
                                 <td className="px-6 py-4 text-sm border-b">{anleitung.title}</td>
                                 <td className="px-6 py-4 text-sm border-b">{anleitung.duration}</td>
-                                <td className="px-6 py-4 text-sm border-b">{new Date(anleitung.date).toLocaleDateString()}</td>
+                                <td className="px-6 py-4 text-sm border-b hidden md:block">{new Date(anleitung.date).toLocaleDateString()}</td>
                                 <td className="px-6 py-4 text-sm border-b">
                                     <Image 
                                         src={`${anleitung.image}`} 
