@@ -47,9 +47,9 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-wrap justify-between p-4">
+    <form onSubmit={handleSubmit} className="flex flex-wrap justify-between">
       <div className="w-full flow-root display-flex md:overflow-y-auto md:p-4">
-        <div className="float-left w-[40%] h-[45%]">
+        <div className="float-left w-[40%] h-[45%] p-4">
           <div className="border-2 border-black rounded-lg p-4 mb-4">
             <label className="block mb-2 font-semibold">Titel</label>
             <input
@@ -82,7 +82,7 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
         </div>
 
         {/* Bildbereich mit flexibler Skalierung */}
-        <div className="float-right w-[40%] h-[90%]">
+        <div className="float-right w-[40%] h-[90%] p-4">
           <div className="border-2 border-black rounded-lg p-4 mb-4 h-full">
             <label className="block mb-2 font-semibold">Bild (optional)</label>
             <input
@@ -102,21 +102,21 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
           </div>
         </div>
       </div>
-      <div className="fixed bottom-4 flex flex-col items-center justify-center w-full space-y-4 lg:flex-row lg:space-y-0 lg:space-x-4 mx-auto">
+      <div className="fixed bottom-4 flex flex-col items-center justify-center w-full space-y-4 lg:flex-row lg:space-y-0 lg:space-x-4">
         <button
           type="submit"
-          className="w-full max-w-xs lg:w-1/5 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
+          className="w-full max-w-xs bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-700"
         >
           Schritt speichern
         </button>
         <button
           type="button"
           onClick={handleAddAnotherStep}
-          className="w-full max-w-xs lg:w-1/5 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
+          className="w-full max-w-xs bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-700"
         >
           Weiteren Schritt hinzufügen
         </button>
-</div>
+      </div>
     </form>
   );
 }
