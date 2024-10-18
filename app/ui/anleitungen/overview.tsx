@@ -37,14 +37,14 @@ export default async function Overview({
             </div>
             <div className="lg:max-w-[40vw] lg:max-h-[45] rounded-lg float-right min-w-[45%]">
               <Image
-                src={'/Testbild.jpg'}
+                src={`/${anleitung.image}`}
                 width={550}
                 height={330}
                 alt="Logo"
                 className="rounded-lg hidden lg:block"
               />
               <Image
-                src={'/Testbild.jpg'}
+                src={`/${anleitung.image}`}
                 width={150}
                 height={150}
                 alt="Logo"

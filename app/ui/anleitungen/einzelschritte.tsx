@@ -47,7 +47,7 @@ export default function Einzelschritte({
       {currentStep.bild && (
         <div className="float-right w-[45%] rounded-lg mb-10">
           <Image
-            src={currentStep.bild}
+            src={`/${currentStep.bild}`}
             width={500}
             height={350}
             alt="Logo"
@@ -67,7 +67,7 @@ export default function Einzelschritte({
         <button
           onClick={handlePreviousStep}
           disabled={currentStepIndex === 0}
-          className="btn btn-secondary whitespace-nowrap"
+          className="btn btn-secondary whitespace-nowrap min-w-[10%] max-w-[40%] sm:max-w-[70%] md:max-w-xs bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
         >
           Zurück
         </button>
@@ -79,7 +79,7 @@ export default function Einzelschritte({
         <button
           onClick={handleNextStep}
           disabled={currentStepIndex === schritte.length - 1}
-          className="btn btn-primary whitespace-nowrap fixed bottom-4 w-full max-w-[40%] sm:max-w-[70%] md:max-w-xs bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
+          className="btn btn-primary whitespace-nowrap min-w-[10%] max-w-[40%] sm:max-w-[70%] md:max-w-xs bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
         >
           Nächster Schritt
         </button>

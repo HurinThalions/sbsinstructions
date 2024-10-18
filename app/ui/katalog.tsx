@@ -1,11 +1,9 @@
 'use client';
 
-import { useState } from 'react';
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 
 import styles from '@/app/ui/css/katalog.module.css';
-import formatTitleForUrl from '@/app/lib/formattitel';
 
 export default function KatalogClient({ anleitungen }: { anleitungen: any[] }) {
 
