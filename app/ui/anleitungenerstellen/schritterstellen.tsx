@@ -39,36 +39,68 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Titel</label>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        required
-      />
+    <form onSubmit={handleSubmit} className="flex flex-wrap justify-between p-4">
+      <div className="w-full flow-root display-flex md:overflow-y-auto md:p-4">
+        <div className="float-left w-[40%] h-[50%]">
+          <div className="border-2 border-black rounded-lg p-4 mb-4">
+            <label className="block mb-2 font-semibold">Titel</label>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              className="w-full p-2 border rounded"
+            />
+          </div>
 
-      <label>Beschreibung</label>
-      <textarea
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        required
-      />
+          <div className="border-2 border-black rounded-lg p-4 mb-4">
+            <label className="block mb-2 font-semibold">Beschreibung</label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+              className="w-full p-2 border rounded"
+            />
+          </div>
 
-      <label>Material (optional)</label>
-      <input
-        type="text"
-        value={material}
-        onChange={(e) => setMaterial(e.target.value)}
-      />
+          <div className="border-2 border-black rounded-lg p-4 mb-4">
+            <label className="block mb-2 font-semibold">Material (optional)</label>
+            <input
+              type="text"
+              value={material}
+              onChange={(e) => setMaterial(e.target.value)}
+              className="w-full p-2 border rounded"
+            />
+          </div>
+        </div>
 
-      <label>Bild (optional)</label>
-      <input
-        type="file"
-        onChange={handleImageChange}
-      />
+        {/* Bildbereich mit flexibler Skalierung */}
+        <div className="float-right w-[40%] h-[100%]">
+          <div className="border-2 border-black rounded-lg p-4 mb-4 h-full">
+            <label className="block mb-2 font-semibold">Bild (optional)</label>
+            <input
+              type="file"
+              onChange={handleImageChange}
+              className="w-full p-2 border rounded"
+            />
+            {image && (
+              <div className="mt-4 w-full max-w-[100%]">
+                <img
+                  src={URL.createObjectURL(image)}
+                  alt="Preview"
+                  className="w-full h-auto max-h-[40vh] object-contain rounded-lg"
+                />
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
 
-      <button type="submit">Schritt speichern</button>
+      <div className="fixed bottom-4 w-full text-center mt-4">
+        <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
+          Schritt speichern
+        </button>
+      </div>
     </form>
   );
 }
