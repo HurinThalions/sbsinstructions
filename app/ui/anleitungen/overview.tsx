@@ -15,7 +15,7 @@ export default async function Overview({
     return (
         <>
             <h1 className="text-center font-bold text-2xl mb-4">Überblick</h1>
-            <div className="float-left border-solid border-2 border-black rounded-lg min-w-[45%] p-2">
+            <div className="float-left border-solid border-2 border-black rounded-lg min-w-[45%]">
               <h1 className="mb-2 font-bold">{anleitung.title}</h1>
               <p className="">Dauer: {anleitung.duration} min</p>
               <p className="mb-2">Datum: {new Date(anleitung.date).toLocaleDateString()}</p>
