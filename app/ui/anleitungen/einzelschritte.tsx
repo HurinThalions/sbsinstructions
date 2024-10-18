@@ -32,8 +32,8 @@ export default function Einzelschritte({
 
   return (
     <>
-      <h1 className="text-center font-bold mb-4">Schritt {currentStepIndex + 1} von {schritte.length}</h1>
-      <div className="float-left min-w-[40%]">
+      <h1 className="text-center text-2xl font-bold mb-4">Schritt {currentStepIndex + 1} von {schritte.length}</h1>
+      <div className="float-left min-w-[45%]">
         <div className="border-2 border-black rounded-lg p-2 mb-4">
           <h2 className="font-bold mb-2">{currentStep.titel}</h2>
           <p>Beschreibung:</p>
@@ -45,16 +45,16 @@ export default function Einzelschritte({
         </div>
       </div>
       {currentStep.bild && (
-        <div className="float-right w-[40%] rounded-lg mb-10">
+        <div className="float-right w-[45%] rounded-lg mb-10">
           <Image
-            src={'/Testbild.jpg'}
+            src={currentStep.bild}
             width={500}
             height={350}
             alt="Logo"
             className="rounded-lg hidden lg:block"
           />
           <Image
-            src={'/Testbild.jpg'}
+            src={currentStep.bild}
             width={150}
             height={100}
             alt="Logo"
@@ -63,9 +63,7 @@ export default function Einzelschritte({
         </div>
       )}
 
-      {/* Anpassung für den Button- und Progressbar-Container */}
       <div className="fixed bottom-10 w-full flex items-center justify-center px-20">
-        {/* Button für den vorherigen Schritt (links) */}
         <button
           onClick={handlePreviousStep}
           disabled={currentStepIndex === 0}
@@ -74,12 +72,10 @@ export default function Einzelschritte({
           Zurück
         </button>
 
-        {/* Progressbar in der Mitte */}
         <div className="w-1/3">
           <Progressbar currentStepIndex={currentStepIndex} totalSteps={schritte.length} />
         </div>
 
-        {/* Button für den nächsten Schritt (rechts) */}
         <button
           onClick={handleNextStep}
           disabled={currentStepIndex === schritte.length - 1}

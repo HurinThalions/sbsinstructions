@@ -13,7 +13,7 @@ export default async function AnleitungerstellenPage() {
     <main>
       <Statusbar />
       <ErsteInfosaufnehmen />
-      {user && <HolletzteAnleitung user={user} />}  {/* Weiterbutton für eingeloggte User */}
+      {user && <HolletzteAnleitung user={user} />}
     </main>
   );
 }

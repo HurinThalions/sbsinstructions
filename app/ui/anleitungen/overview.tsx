@@ -14,8 +14,8 @@ export default async function Overview({
 
     return (
         <>
-            <h1 className="text-center font-bold mb-4">Überblick</h1>
-            <div className="float-left border-solid border-2 border-black rounded-lg min-w-[40%] p-2">
+            <h1 className="text-center font-bold text-2xl mb-4">Überblick</h1>
+            <div className="float-left border-solid border-2 border-black rounded-lg min-w-[45%] p-2">
               <h1 className="mb-2 font-bold">{anleitung.title}</h1>
               <p className="">Dauer: {anleitung.duration} min</p>
               <p className="mb-2">Datum: {new Date(anleitung.date).toLocaleDateString()}</p>
@@ -35,7 +35,7 @@ export default async function Overview({
                 </button>
             </Link>
             </div>
-            <div className="lg:max-w-[40vw] lg:max-h-[45] rounded-lg float-right min-w-[40%]">
+            <div className="lg:max-w-[40vw] lg:max-h-[45] rounded-lg float-right min-w-[45%]">
               <Image
                 src={'/Testbild.jpg'}
                 width={550}
