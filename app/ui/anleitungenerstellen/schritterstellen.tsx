@@ -38,6 +38,14 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
     }
   };
 
+  const handleAddAnotherStep = () => {
+    // Leere das Formular, um einen weiteren Schritt hinzuzufügen
+    setTitle('');
+    setDescription('');
+    setImage(null);
+    setMaterial('');
+  };
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-wrap justify-between p-4">
       <div className="w-full flow-root display-flex md:overflow-y-auto md:p-4">
@@ -65,8 +73,7 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
 
           <div className="border-2 border-black rounded-lg p-4 mb-4">
             <label className="block mb-2 font-semibold">Material (optional)</label>
-            <input
-              type="text"
+            <textarea
               value={material}
               onChange={(e) => setMaterial(e.target.value)}
               className="w-full p-2 border rounded"
@@ -97,8 +104,17 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
       </div>
 
       <div className="fixed bottom-4 w-full text-center mt-4">
-        <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
+        <button
+          type="submit"
+          className="mr-4 min-w-[200px] bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
           Schritt speichern
+        </button>
+        <button
+          type="button"
+          onClick={handleAddAnotherStep}
+          className="min-w-[200px] bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
+        >
+          Weiteren Schritt hinzufügen
         </button>
       </div>
     </form>
