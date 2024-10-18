@@ -8,5 +8,9 @@ export default async function HolletzteAnleitung({
 }) {
   const anleitungId = await fetchletzteAnleitungUser(user);
 
-  return <WeiterButton anleitungId={anleitungId} />;
+  return (
+    <div className="fixed bottom-4 flex items-center justify-center w-full space-y-4 lg:flex-row lg:space-y-0 lg:space-x-4">
+      <WeiterButton anleitungId={anleitungId} />
+    </div>
+  )
 }
