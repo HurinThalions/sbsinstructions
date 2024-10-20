@@ -7,7 +7,8 @@ import { UserIcon, PlusIcon } from "@heroicons/react/16/solid";
 import styles from '@/app/ui/css/topbar.module.css';
 import Link from "next/link";
 
-const Navbar = () => {
+export default function Navbar() {
+
 
   return (
     <div className={styles.body}>
@@ -43,4 +44,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+

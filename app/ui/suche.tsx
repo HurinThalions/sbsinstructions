@@ -13,7 +13,6 @@ export default function Suche({ placeholder }: { placeholder: string }) {
     console.log('Suche... ${term}');
 
     const params = searchParams ? new URLSearchParams(searchParams.toString()) : new URLSearchParams();
-    // const params = new URLSearchParams(searchParams);
     params.set('page', '1');
     
     if (term) {

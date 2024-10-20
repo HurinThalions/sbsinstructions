@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import styles from '@/app/ui/css/katalog.module.css';
 
 export default function KatalogClient({ anleitungen }: { anleitungen: any[] }) {
-
     const router = useRouter();
 
     const handleClick = (id: string, titel: string) => {
