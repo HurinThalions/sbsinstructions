@@ -22,8 +22,8 @@ export default function KatalogClient({ anleitungen }: { anleitungen: any[] }) {
                         <tr>
                             <th>Titel</th>
                             <th>Dauer</th>
-                            <th className='hidden md:block'>Datum</th>
-                            <th>Bild</th>
+                            <th className='hidden md:table-cell'>Datum</th>
+                            <th className="hidden md:table-cell">Bild</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,7 +36,7 @@ export default function KatalogClient({ anleitungen }: { anleitungen: any[] }) {
                                 <td className="px-6 py-4 text-sm border-b">{anleitung.title}</td>
                                 <td className="px-6 py-4 text-sm border-b">{anleitung.duration}</td>
                                 <td className="px-6 py-4 text-sm border-b hidden md:table-cell">{new Date(anleitung.date).toLocaleDateString()}</td>
-                                <td className="px-6 py-4 text-sm border-b">
+                                <td className="px-6 py-4 text-sm border-b hidden md:table-cell">
                                     <Image 
                                         src={`${anleitung.image}`} 
                                         alt={anleitung.title} 
