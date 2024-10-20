@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { UserIcon } from "@heroicons/react/16/solid";
 
 import { UserGroupIcon } from "@heroicons/react/16/solid";
 import styles from '@/app/ui/css/topbar.module.css';
@@ -33,7 +34,8 @@ const Navbar = () => {
     <div className={styles.body}>
         <div className={styles.header}>
                 <a className={styles.logocontainer} href="/">
-                    <Image
+                    <UserIcon/>
+                    {/* <Image
                         src={'/Logo.svg'}
                         width={190}
                         height={95}
@@ -46,7 +48,7 @@ const Navbar = () => {
                         height={47}
                         alt="Logo"
                         className="block md:hidden"
-                    />
+                    /> */}
                 </a>
         <div className={styles.boxumAErstellen}>
             <a className={styles.aErstellen} href="/Anleitungerstellen">
