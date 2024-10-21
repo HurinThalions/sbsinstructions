@@ -6,8 +6,7 @@ export default function Endseite() {
 
     return (
         <div className="flex flex-grow">
-            <CheckCircleIcon className="bg-green-500"></CheckCircleIcon>
-            <h1 className="text-center font-bold text-2xl">Aufgabegeschafft</h1>
+            <CheckCircleIcon className=""></CheckCircleIcon>
             <EndseitenButton/>
         </div>
     )
