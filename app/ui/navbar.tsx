@@ -1,6 +1,3 @@
-'use client'
-
-import React, { useState } from "react";
 import Image from "next/image";
 import { UserIcon, PlusIcon } from "@heroicons/react/16/solid";
 
@@ -8,7 +5,6 @@ import styles from '@/app/ui/css/topbar.module.css';
 import Link from "next/link";
 
 export default function Navbar() {
-
 
   return (
     <div className={styles.body}>

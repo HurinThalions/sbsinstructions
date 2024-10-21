@@ -6,20 +6,18 @@ import { useState } from 'react';
 import HolletzteAnleitung from './holanleitungsid';
 
 export default function ErsteInfosaufnehmen() {
-  const { data: session } = useSession();  // Session-Daten des Nutzers
+  const { data: session } = useSession();
   const [title, setTitle] = useState('');
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState('');
-  const [image, setImage] = useState<File | null>(null);  // Bilddatei wird gespeichert
+  const [image, setImage] = useState<File | null>(null);
 
-  // Funktion zum Hochladen eines Bildes
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setImage(e.target.files[0]);
     }
   };
 
-  // Funktion zum Absenden des Formulars
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -27,7 +25,7 @@ export default function ErsteInfosaufnehmen() {
     const title = formData.get('title') as string;
     const duration = formData.get('duration') as string;
     const date = formData.get('date') as string;
-    const user = session?.user?.name || '';  // Nutzername
+    const user = session?.user?.name || '';
     const imageFile = formData.get('image') as File;
 
     // Konvertiere das Bild zu Base64

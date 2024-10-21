@@ -78,7 +78,7 @@ export async function fetchletzteAnleitungUser(
         ORDER BY created_at DESC
         LIMIT 1
         `;
-
+        
         return anleitungen.rows[0]?.id || null;
     } catch (error) {
         console.error('Datenbankfehler3: ', error);

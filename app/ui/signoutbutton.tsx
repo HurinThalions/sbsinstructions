@@ -5,7 +5,7 @@ export default function SignOutButton() {
     const { data: session } = useSession();
   
     if (!session) {
-      return null; // Wenn der Benutzer nicht eingeloggt ist, wird der Button nicht angezeigt
+      return null;
     }
   
     return (

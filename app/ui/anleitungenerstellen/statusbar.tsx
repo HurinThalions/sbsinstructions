@@ -5,7 +5,7 @@ export default function Statusbar() {
 
     return (
 
-        <div className='display-flex w-full'>
+        <div className='display-flex w-full m-4'>
             <ul className={`${styles.multi_steps} list-unstyled multi-steps`}>
                 <li>
                     <div className="margin-left: -4px;">Infos</div>
