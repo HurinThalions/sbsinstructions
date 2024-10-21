@@ -24,7 +24,7 @@ export default function Einzelschritte({
     if (currentStepIndex < schritte.length - 1) {
       setCurrentStepIndex(currentStepIndex + 1);
     } else {
-      router.push('Endseite');
+      router.push('/Endseite');
     }
   };
 
@@ -83,7 +83,6 @@ export default function Einzelschritte({
 
         <button
           onClick={handleNextStep}
-          disabled={currentStepIndex === schritte.length - 1}
           className="btn btn-primary whitespace-nowrap min-w-[10%] max-w-[40%] sm:max-w-[70%] md:max-w-xs bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
         >
           {currentStepIndex === schritte.length - 1 ? "Anleitung beenden" : "Nächster Schritt"}
