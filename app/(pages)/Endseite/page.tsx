@@ -1,12 +1,10 @@
-import { CheckIcon } from "@heroicons/react/16/solid";
 import Image from "next/image";
 
 import EndseitenButton from "@/app/ui/EndseiteButton";
 
-
 export default function Endseite() {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen space-y-4">
+      <div className="flex flex-col items-center justify-center max-h-screen space-y-4">
         <Image
             src={'/GruenerHaken.svg'}
             height={300}
