@@ -3,8 +3,6 @@
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
-import HolletzteAnleitung from './holanleitungsid';
-
 export default function ErsteInfosaufnehmen() {
   const { data: session } = useSession();
   const [title, setTitle] = useState('');
