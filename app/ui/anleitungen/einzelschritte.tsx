@@ -39,7 +39,7 @@ export default function Einzelschritte({
   return (
     <>
       <h1 className="text-center text-2xl font-bold mb-4">Schritt {currentStepIndex + 1} von {schritte.length}</h1>
-      <div className="float-left min-w-[45%]">
+      <div className="float-left min-w-[45%] p-4">
         <div className="border-2 border-black rounded-lg p-2 mb-4">
           <h2 className="font-bold mb-2">{currentStep.titel}</h2>
           <p>Beschreibung:</p>
@@ -51,7 +51,7 @@ export default function Einzelschritte({
         </div>
       </div>
       {currentStep.bild && (
-        <div className="float-right w-[45%] rounded-lg mb-10">
+        <div className="float-right w-[45%] rounded-lg mb-10 p-4">
           <Image
             src={`/${currentStep.bild}`}
             width={500}
