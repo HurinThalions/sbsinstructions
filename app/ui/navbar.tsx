@@ -29,17 +29,26 @@ export default function Navbar() {
             <Link href='/Anleitungerstellen'>
                 <PlusIcon
                     className={`${styles.aErstellen} hidden md:block`}
-                    width={95}
-                    height={95}/>
+                    width={50}
+                    height={50}/>
                 <PlusIcon
                     className={`${styles.aErstellen} block md:hidden`}
-                    width={95}
-                    height={95}/>
+                    width={20}
+                    height={20}/>
             </Link>
         </div>
         <div className={styles.boxumProfil}>
             <Link href={'/signin'}>
-                <UserIcon className={styles.profil} />
+                <UserIcon
+                    className={`${styles.profil} hidden md:block`}
+                    width={50}
+                    height={50}
+                    />
+                <UserIcon
+                    className={`${styles.profil} hidden md:block`}
+                    width={20}
+                    height={20}
+                    />
             </Link>
         </div>
         </div>
