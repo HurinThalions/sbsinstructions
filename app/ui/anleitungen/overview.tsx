@@ -46,14 +46,12 @@ export default async function Overview({
             </div>
             </div>
             <div className="fixed bottom-4 flex flex-col items-center justify-center w-full space-y-4 lg:flex-row lg:space-y-0 lg:space-x-4">
-                {/* Zurück zum Katalog Button */}
                 <Link href="/">
                     <button className="w-full max-w-[100%] lg:max-w-xs bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 whitespace-nowrap">
                         Zurück zum Katalog
                     </button>
                 </Link>
 
-                {/* Zu den Schritten Button */}
                 <Link
                     href={{
                     pathname: `/Anleitung/${params.id}/schritte`,
