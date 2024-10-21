@@ -27,7 +27,14 @@ export default function Navbar() {
                 </a>
         <div className={styles.boxumAErstellen}>
             <Link href='/Anleitungerstellen'>
-                <PlusIcon className={styles.aErstellen}/>
+                <PlusIcon
+                    className={`${styles.aErstellen} hidden md:block`}
+                    width={95}
+                    height={95}/>
+                <PlusIcon
+                    className={`${styles.aErstellen} block md:hidden`}
+                    width={95}
+                    height={95}/>
             </Link>
         </div>
         <div className={styles.boxumProfil}>

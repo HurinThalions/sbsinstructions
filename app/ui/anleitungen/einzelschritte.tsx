@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 import Image from "next/image";
-import { useRouter } from 'next/navigation';  // Verwende useRouter für Navigation
+import { useRouter } from 'next/navigation';
 import { Progressbar } from "./progressbar";
 
 export default function Einzelschritte({
