@@ -1,6 +1,5 @@
 import Statusbar from "@/app/ui/anleitungenerstellen/statusbar";
 import ErsteInfosaufnehmen from "@/app/ui/anleitungenerstellen/ersteinfos";
-import HolletzteAnleitung from "@/app/ui/anleitungenerstellen/holanleitungsid";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/auth";
 
