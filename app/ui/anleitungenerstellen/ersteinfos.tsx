@@ -10,12 +10,12 @@ export default function ErsteInfosaufnehmen() {
   const [title, setTitle] = useState('');
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState('');
-  const [image, setImage] = useState<File | null>(null);
+  const [image, setImage] = useState<File | null>(null);  // Bildzustand für die Vorschau
   const [showSuccess, setShowSuccess] = useState(false);  // Für die Erfolgsmeldung
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      setImage(e.target.files[0]);
+      setImage(e.target.files[0]);  // Bild wird gespeichert
     }
   };
 
@@ -118,6 +118,16 @@ export default function ErsteInfosaufnehmen() {
             onChange={handleImageChange}
             className="w-full p-2 border border-gray-300 rounded-md"
           />
+
+          {image && (
+            <div className="mt-4 w-full max-w-[100%]">
+              <img
+                src={URL.createObjectURL(image)}
+                alt="Bildvorschau"
+                className="w-full h-auto max-h-[40vh] object-contain rounded-lg"
+              />
+            </div>
+          )}
 
           <label className="block mt-4 mb-2 text-sm font-medium text-gray-900" htmlFor="user">
             Ersteller
