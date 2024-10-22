@@ -12,8 +12,8 @@ export async function POST(req: Request) {
     `;
 
     const anleitungId = result.rows[0].id;
-    return NextResponse.json({ id: anleitungId, message: 'Anleitung erfolgreich erstellt' });
-    
+    return NextResponse.json({ id: anleitungId});
+
   } catch (error) {
     console.error('Fehler beim Speichern der Anleitung:', error);
     return NextResponse.json({ error: 'Fehler beim Erstellen der Anleitung' }, { status: 500 });
