@@ -12,7 +12,7 @@ export async function POST(req: Request, { params }: { params: { anleitungId: st
     `;
 
 
-    return NextResponse.json({ message: 'Schritt erfolgreich erstellt' });
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Fehler beim Speichern des Schritts:', error);
     return NextResponse.json({ error: 'Fehler beim Erstellen des Schritts' }, { status: 500 });
