@@ -133,9 +133,11 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
       </form>
 
       {showSuccess && (
-        <div className="fixed items-center justify-center bg-green-500 text-white py-2 px-4 rounded-lg">
-          Schritt erfolgreich hinzugefügt
-        </div>
+          <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="bg-green-500 text-white py-4 px-6 rounded-lg shadow-lg">
+              Schritt erfolgreich hinzugefügt
+            </div>
+          </div>
       )}
     </>
   );
