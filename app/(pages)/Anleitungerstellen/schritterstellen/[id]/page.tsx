@@ -12,7 +12,7 @@ export default function SchritteErstellenPage() {
   }
   
   if (!anleitungId) {
-    return <p>Es gibt keine Anleitungsschritte zu dieser Anleitung</p>;
+    return <p>Es gibt keine Anleitung mit dieser id</p>;
   }
 
   return (
