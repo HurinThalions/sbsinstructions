@@ -120,7 +120,7 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
             type="submit"
             className="w-full max-w-[40%] lg:max-w-xs bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
           >
-            Schritt speichern und Weiteren hinzufügen
+            Schritt speichern
           </button>
           <button
             type="button"
@@ -133,7 +133,7 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
       </form>
 
       {showSuccess && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-green-500 text-white py-2 px-4 rounded-lg">
+        <div className="fixed items-center justify-center bg-green-500 text-white py-2 px-4 rounded-lg">
           Schritt erfolgreich hinzugefügt
         </div>
       )}
