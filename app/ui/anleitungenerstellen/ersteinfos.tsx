@@ -46,10 +46,15 @@ export default function ErsteInfosaufnehmen() {
     });
 
     if (res.ok) {
+      // Anleitung wurde erfolgreich erstellt, erhalte die Anleitung-ID aus der Antwort
+      const data = await res.json();
+      const anleitungId = data.id; // Nehme an, dass die API die ID zurückgibt
+
       setShowSuccess(true);  // Erfolgsmeldung anzeigen
       setTimeout(() => {
         setShowSuccess(false);  // Nach 0.5 Sekunden ausblenden
-        router.push('/Anleitungerstellen/schritterstellen');  // Weiter zu den Schritten
+        // Weiter zu den Schritten mit der Anleitung-ID
+        router.push(`/Anleitungerstellen/schritterstellen/${anleitungId}`);
       }, 500);
     } else {
       const { error } = await res.json();

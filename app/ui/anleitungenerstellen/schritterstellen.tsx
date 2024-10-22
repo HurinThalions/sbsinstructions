@@ -1,13 +1,15 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation'; // Für die Navigation
 
 export default function SchrittundMaterialerstellen({ anleitungId }: { anleitungId: string }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const [material, setMaterial] = useState('');
-  const [showSuccess, setShowSuccess] = useState(false);  // Für den Prompt
+  const [showSuccess, setShowSuccess] = useState(false);
+  const router = useRouter();  // Verwende Router für Navigation
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -50,6 +52,11 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
     setDescription('');
     setImage(null);
     setMaterial('');
+  };
+
+  const handleComplete = () => {
+    // Leite zur Endseite weiter, wenn die Anleitung fertiggestellt wird
+    router.push('/Endseite');
   };
 
   return (
@@ -114,6 +121,13 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
             className="w-full max-w-[40%] lg:max-w-xs bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
           >
             Schritt speichern und Weiteren hinzufügen
+          </button>
+          <button
+            type="button"
+            onClick={handleComplete}
+            className="w-full max-w-[40%] lg:max-w-xs bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700"
+          >
+            Anleitung fertigstellen
           </button>
         </div>
       </form>
