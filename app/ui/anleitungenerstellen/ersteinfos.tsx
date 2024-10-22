@@ -148,7 +148,7 @@ export default function ErsteInfosaufnehmen() {
         </div>
         <div className="fixed bottom-4 flex flex-col items-center justify-center w-full space-y-4 lg:flex-row lg:space-y-0 lg:space-x-4">
           <button type="submit" className="mt-6 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
-            Anleitung erstellen und Weiter zu den Schritten
+            Anleitung erstellen und Weiter
           </button>
         </div>
       </form>
