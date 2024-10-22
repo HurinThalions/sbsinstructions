@@ -107,27 +107,7 @@ export default function ErsteInfosaufnehmen() {
             className="w-full p-2 border border-gray-300 rounded-md"
           />
 
-          <label className="block mt-4 mb-2 text-sm font-medium text-gray-900" htmlFor="image">
-            Bild hochladen
-          </label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
-            onChange={handleImageChange}
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
 
-          {image && (
-            <div className="mt-4 w-full max-w-[100%]">
-              <img
-                src={URL.createObjectURL(image)}
-                alt="Bildvorschau"
-                className="w-full h-auto max-h-[40vh] object-contain rounded-lg"
-              />
-            </div>
-          )}
 
           <label className="block mt-4 mb-2 text-sm font-medium text-gray-900" htmlFor="user">
             Ersteller
@@ -146,6 +126,27 @@ export default function ErsteInfosaufnehmen() {
           </button>
         </div>
         <div className="float-right lg:max-w-[40vw] lg:max-h-[45] rounded-lg min-w-[40%]">
+          <label className="block mt-4 mb-2 text-sm font-medium text-gray-900" htmlFor="image">
+            Bild hochladen
+            </label>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="w-full p-2 border border-gray-300 rounded-md"
+          />
+
+          {image && (
+            <div className="mt-4 w-full max-w-[100%]">
+              <img
+                src={URL.createObjectURL(image)}
+                alt="Bildvorschau"
+                className="w-full h-auto max-h-[40vh] object-contain rounded-lg"
+              />
+            </div>
+          )}
         </div>
       </form>
 
