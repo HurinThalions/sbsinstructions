@@ -61,10 +61,10 @@ export default function ErsteInfosaufnehmen() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="flow-root display-flex md:overflow-y-auto md:p-4 p-4">
-        <div className="float-left w-[50%] h-[45%] p-4">
-          <div className="border-2 border-black rounded-lg p-4 mb-4">
-            <h2 className="text-lg font-bold mb-4">Anleitung erstellen</h2>
+      <form onSubmit={handleSubmit} className="flow-root display-flex md:overflow-y-auto p-4">
+      <h2 className="text-lg font-bold mb-4">Anleitung erstellen</h2>
+        <div className="float-left w-[50%] h-[45%]">
+          <div className="border-2 border-black rounded-lg mb-4">
 
             <label className="block mb-2 text-sm font-medium text-gray-900" htmlFor="title">
               Titel der Anleitung
@@ -117,13 +117,11 @@ export default function ErsteInfosaufnehmen() {
               className="w-full p-2 border border-gray-300 rounded-md bg-gray-100"
             />
 
-            <button type="submit" className="mt-6 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
-              Anleitung erstellen und Weiter zu den Schritten
-            </button>
+
           </div>
         </div>
 
-        <div className="float-right w-[45%] h-[90%] p-4">
+        <div className="float-right w-[45%] h-[90%]">
           <div className="border-2 border-black rounded-lg p-4 mb-4 h-full">
             <label className="block mt-4 mb-2 text-sm font-medium text-gray-900" htmlFor="image">
               Bild hochladen
@@ -147,6 +145,11 @@ export default function ErsteInfosaufnehmen() {
               </div>
             )}
           </div>
+        </div>
+        <div className="fixed bottom-4 flex flex-col items-center justify-center w-full space-y-4 lg:flex-row lg:space-y-0 lg:space-x-4">
+          <button type="submit" className="mt-6 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
+            Anleitung erstellen und Weiter zu den Schritten
+          </button>
         </div>
       </form>
 
