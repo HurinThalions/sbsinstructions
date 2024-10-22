@@ -6,16 +6,16 @@ import { useRouter } from 'next/navigation';
 
 export default function ErsteInfosaufnehmen() {
   const { data: session } = useSession();
-  const router = useRouter();  // Für die Weiterleitung
+  const router = useRouter();
   const [title, setTitle] = useState('');
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState('');
-  const [image, setImage] = useState<File | null>(null);  // Bildzustand für die Vorschau
-  const [showSuccess, setShowSuccess] = useState(false);  // Für die Erfolgsmeldung
+  const [image, setImage] = useState<File | null>(null);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      setImage(e.target.files[0]);  // Bild wird gespeichert
+      setImage(e.target.files[0]);
     }
   };
 
@@ -38,7 +38,6 @@ export default function ErsteInfosaufnehmen() {
       reader.readAsDataURL(imageFile);
     }
 
-    // Sende die Anleitung an den API-Endpunkt
     const res = await fetch('/api/anleitungen', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -46,14 +45,12 @@ export default function ErsteInfosaufnehmen() {
     });
 
     if (res.ok) {
-      // Anleitung wurde erfolgreich erstellt, erhalte die Anleitung-ID aus der Antwort
       const data = await res.json();
-      const anleitungId = data.id; // Nehme an, dass die API die ID zurückgibt
+      const anleitungId = data.id;
 
-      setShowSuccess(true);  // Erfolgsmeldung anzeigen
+      setShowSuccess(true);
       setTimeout(() => {
-        setShowSuccess(false);  // Nach 0.5 Sekunden ausblenden
-        // Weiter zu den Schritten mit der Anleitung-ID
+        setShowSuccess(false);
         router.push(`/Anleitungerstellen/schritterstellen/${anleitungId}`);
       }, 500);
     } else {
@@ -65,66 +62,67 @@ export default function ErsteInfosaufnehmen() {
   return (
     <>
       <form onSubmit={handleSubmit} className="flow-root display-flex md:overflow-y-auto md:p-4 p-4">
-        <div className="float-left border-solid border-2 border-black rounded-lg min-w-[45%] max-h-[80%] p-2">
-          <h2 className="text-lg font-bold mb-4">Anleitung erstellen</h2>
+        <div className="float-left w-[50%] h-[45%] p-4">
+          <div className="border-2 border-black rounded-lg p-4 mb-4">
+            <h2 className="text-lg font-bold mb-4">Anleitung erstellen</h2>
 
-          <label className="block mb-2 text-sm font-medium text-gray-900" htmlFor="title">
-            Titel der Anleitung
-          </label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
+            <label className="block mb-2 text-sm font-medium text-gray-900" htmlFor="title">
+              Titel der Anleitung
+            </label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              className="w-full p-2 border rounded-md"
+            />
 
-          <label className="block mt-4 mb-2 text-sm font-medium text-gray-900" htmlFor="duration">
-            Dauer (in Minuten)
-          </label>
-          <input
-            type="number"
-            id="duration"
-            name="duration"
-            value={duration}
-            onChange={(e) => setDuration(e.target.value)}
-            required
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
+            <label className="block mt-4 mb-2 text-sm font-medium text-gray-900" htmlFor="duration">
+              Dauer (in Minuten)
+            </label>
+            <input
+              type="number"
+              id="duration"
+              name="duration"
+              value={duration}
+              onChange={(e) => setDuration(e.target.value)}
+              required
+              className="w-full p-2 border rounded-md"
+            />
 
-          <label className="block mt-4 mb-2 text-sm font-medium text-gray-900" htmlFor="date">
-            Datum
-          </label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            required
-            className="w-full p-2 border border-gray-300 rounded-md"
-          />
+            <label className="block mt-4 mb-2 text-sm font-medium text-gray-900" htmlFor="date">
+              Datum
+            </label>
+            <input
+              type="date"
+              id="date"
+              name="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              required
+              className="w-full p-2 border rounded-md"
+            />
 
+            <label className="block mt-4 mb-2 text-sm font-medium text-gray-900" htmlFor="user">
+              Ersteller
+            </label>
+            <input
+              type="text"
+              id="user"
+              name="user"
+              value={session?.user?.name || ''}
+              disabled
+              className="w-full p-2 border border-gray-300 rounded-md bg-gray-100"
+            />
 
-
-          <label className="block mt-4 mb-2 text-sm font-medium text-gray-900" htmlFor="user">
-            Ersteller
-          </label>
-          <input
-            type="text"
-            id="user"
-            name="user"
-            value={session?.user?.name || ''}
-            disabled
-            className="w-full p-2 border border-gray-300 rounded-md bg-gray-100"
-          />
-
-          <button type="submit" className="mt-6 bg-blue-500 text-white py-2 px-4 rounded-lg">
-            Anleitung erstellen und Weiter zu den Schritten
-          </button>
+            <button type="submit" className="mt-6 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
+              Anleitung erstellen und Weiter zu den Schritten
+            </button>
+          </div>
         </div>
+
         <div className="float-right w-[45%] h-[90%] p-4">
           <div className="border-2 border-black rounded-lg p-4 mb-4 h-full">
             <label className="block mt-4 mb-2 text-sm font-medium text-gray-900" htmlFor="image">
