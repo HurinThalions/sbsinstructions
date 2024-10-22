@@ -125,9 +125,10 @@ export default function ErsteInfosaufnehmen() {
             Anleitung erstellen und Weiter zu den Schritten
           </button>
         </div>
-        <div className="float-right lg:max-w-[40vw] lg:max-h-[45] rounded-lg min-w-[40%]">
-          <label className="block mt-4 mb-2 text-sm font-medium text-gray-900" htmlFor="image">
-            Bild hochladen
+        <div className="float-right w-[45%] h-[90%] p-4">
+          <div className="border-2 border-black rounded-lg p-4 mb-4 h-full">
+            <label className="block mt-4 mb-2 text-sm font-medium text-gray-900" htmlFor="image">
+              Bild hochladen
             </label>
             <input
               type="file"
@@ -136,17 +137,18 @@ export default function ErsteInfosaufnehmen() {
               accept="image/*"
               onChange={handleImageChange}
               className="w-full p-2 border border-gray-300 rounded-md"
-          />
+            />
 
-          {image && (
-            <div className="mt-4 w-full max-w-[100%]">
-              <img
-                src={URL.createObjectURL(image)}
-                alt="Bildvorschau"
-                className="w-full h-auto max-h-[40vh] object-contain rounded-lg"
-              />
-            </div>
-          )}
+            {image && (
+              <div className="mt-4 w-full max-w-[100%]">
+                <img
+                  src={URL.createObjectURL(image)}
+                  alt="Bildvorschau"
+                  className="w-full h-auto max-h-[40vh] object-contain rounded-lg"
+                />
+              </div>
+            )}
+          </div>
         </div>
       </form>
 
