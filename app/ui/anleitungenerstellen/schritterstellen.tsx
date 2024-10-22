@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation'; // Für die Navigation
+import { useRouter } from 'next/navigation';
 
 export default function SchrittundMaterialerstellen({ anleitungId }: { anleitungId: string }) {
   const [title, setTitle] = useState('');
@@ -9,7 +9,7 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
   const [image, setImage] = useState<File | null>(null);
   const [material, setMaterial] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
-  const router = useRouter();  // Verwende Router für Navigation
+  const router = useRouter();
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -34,11 +34,10 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
     });
 
     if (res.ok) {
-      // Erfolgsmeldung anzeigen
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
-        handleAddAnotherStep(); // Neues Formular bereitstellen
+        handleAddAnotherStep();
       }, 500);
     } else {
       const { error } = await res.json();
@@ -47,7 +46,6 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
   };
 
   const handleAddAnotherStep = () => {
-    // Leere das Formular, um einen weiteren Schritt hinzuzufügen
     setTitle('');
     setDescription('');
     setImage(null);
@@ -55,7 +53,6 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
   };
 
   const handleComplete = () => {
-    // Leite zur Endseite weiter, wenn die Anleitung fertiggestellt wird
     router.push('/Endseite');
   };
 
@@ -76,7 +73,7 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
             </div>
 
             <div className="border-2 border-black rounded-lg p-4 mb-4">
-              <label className="block mb-2 font-semibold">Beschreibung</label>
+              <label className="block mb-2 font-semibold">Beschreibung (optional)</label>
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
