@@ -3,6 +3,7 @@
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { mutate } from 'swr'; // Importiere mutate von SWR
 
 export default function ErsteInfosaufnehmen() {
   const { data: session } = useSession();
@@ -47,6 +48,9 @@ export default function ErsteInfosaufnehmen() {
     if (res.ok) {
       const data = await res.json();
       const anleitungId = data.id;
+
+      // Cache-Invalidation von SWR auslösen
+      mutate('/api/anleitungen?query=&page=1');
 
       setShowSuccess(true);
       setTimeout(() => {

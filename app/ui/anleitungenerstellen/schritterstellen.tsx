@@ -73,7 +73,7 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
             </div>
 
             <div className="border-2 border-black rounded-lg p-4 mb-4">
-              <label className="block mb-2 font-semibold">Beschreibung (optional)</label>
+              <label className="block mb-2 font-semibold">Beschreibung</label>
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
