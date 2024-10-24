@@ -25,7 +25,7 @@ export async function fetchgefilterteAnleitungen(
             anleitungen.title ILIKE ${searchQuery} OR
             anleitungen.date::text ILIKE ${searchQuery} OR
             anleitungen.duration::text ILIKE ${searchQuery}
-        ORDER BY anleitungen.date DESC
+        ORDER BY anleitungen.date ASC
         LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
         `;
         
