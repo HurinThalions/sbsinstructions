@@ -121,7 +121,7 @@ export default function ErsteInfosaufnehmen() {
           </div>
         </div>
 
-        <div className="float-right w-[45%] h-[90%] p-4">
+        <div className="float-right w-[45%] h-[100%] p-4">
           <div className="border-2 border-black rounded-lg p-4 mb-4 h-full">
             <label className="block mt-4 mb-2 text-sm font-medium text-gray-900" htmlFor="image">
               Bild hochladen

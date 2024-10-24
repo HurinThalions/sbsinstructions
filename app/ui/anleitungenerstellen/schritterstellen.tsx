@@ -101,7 +101,7 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
                 className="w-full p-2 border rounded"
               />
               {image && (
-                <div className="mt-4 w-full max-w-[100%]">
+                <div className="mt-4 w-full max-w-[100%] h-auto rouded-lg">
                   <img
                     src={URL.createObjectURL(image)}
                     alt="Preview"
