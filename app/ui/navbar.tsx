@@ -38,7 +38,7 @@ export default function Navbar() {
             </Link>
                 {/* Tooltip */}
             <span className="absolute bottom-14 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Klicken, um eine Anleitung zu erstellen
+                Anleitung erstellen
             </span>
         </div>
         <div className={`${styles.boxumProfil} relative group`}>
@@ -56,7 +56,7 @@ export default function Navbar() {
             </Link>
                 {/* Tooltip */}
             <span className="absolute bottom-14 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Klicken, um sich anzumelden
+                Anmeldung & Registrierung
             </span>
         </div>
         </div>

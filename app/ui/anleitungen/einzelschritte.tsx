@@ -42,7 +42,7 @@ export default function Einzelschritte({
       <div className="float-left w-[45%] p-4">
         <div className="border-2 border-black rounded-lg p-2 mb-4">
           <h2 className="font-bold mb-2">Titel:  {currentStep.title}</h2>
-          <p className="border-b">Beschreibung:</p>
+          <p>Beschreibung:</p>
           <p>{currentStep.description}</p>
         </div>
         <div className="border-2 border-black rounded-lg p-2 mb-4">
