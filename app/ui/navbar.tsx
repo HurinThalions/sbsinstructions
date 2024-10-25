@@ -28,7 +28,7 @@ export default function Navbar() {
         <div className={styles.boxumAErstellen}>
             <Link href='/Anleitungerstellen'>
                 <PlusIcon
-                    className={`${styles.aErstellen} hidden md:block`}
+                    className={`${styles.aErstellen} hidden md:block `}
                     width={55}
                     height={55}/>
                 <PlusIcon
@@ -36,6 +36,10 @@ export default function Navbar() {
                     width={35}
                     height={35}/>
             </Link>
+                {/* Tooltip */}
+            <span className="absolute bottom-14 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Klicken, um eine Anleitung zu erstellen
+            </span>
         </div>
         <div className={styles.boxumProfil}>
             <Link href={'/signin'}>
@@ -50,6 +54,10 @@ export default function Navbar() {
                     height={35}
                     />
             </Link>
+                {/* Tooltip */}
+            <span className="absolute bottom-14 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Klicken, um sich anzumelden
+            </span>
         </div>
         </div>
     </div>
