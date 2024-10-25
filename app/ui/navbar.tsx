@@ -25,7 +25,7 @@ export default function Navbar() {
                         className="block md:hidden"
                     />
                 </a>
-        <div className={styles.boxumAErstellen}>
+        <div className={`${styles.boxumAErstellen} relative group`}>
             <Link href='/Anleitungerstellen'>
                 <PlusIcon
                     className={`${styles.aErstellen} hidden md:block `}
@@ -41,7 +41,7 @@ export default function Navbar() {
                 Klicken, um eine Anleitung zu erstellen
             </span>
         </div>
-        <div className={styles.boxumProfil}>
+        <div className={`${styles.boxumProfil} relative group`}>
             <Link href={'/signin'}>
                 <UserIcon
                     className={`${styles.profil} hidden md:block`}
