@@ -9,9 +9,9 @@ export default function Einzelschritte({
 }: {
   schritte: Array<{
     id: number;
-    titel: string;
-    beschreibung: string;
-    bild: string;
+    title: string;
+    description: string;
+    image: string;
     material: string;
     anleitung_id: number;
   }>;
@@ -41,26 +41,26 @@ export default function Einzelschritte({
       <h1 className="text-center text-2xl font-bold mb-4">Schritt {currentStepIndex + 1} von {schritte.length}</h1>
       <div className="float-left min-w-[45%] p-4">
         <div className="border-2 border-black rounded-lg p-2 mb-4">
-          <h2 className="font-bold mb-2">{currentStep.titel}</h2>
+          <h2 className="font-bold mb-2">{currentStep.title}</h2>
           <p>Beschreibung:</p>
-          <p>{currentStep.beschreibung}</p>
+          <p>{currentStep.description}</p>
         </div>
         <div className="border-2 border-black rounded-lg p-2 mb-4">
           <p className="font-semibold">Material:</p>
           <p>{currentStep.material}</p>
         </div>
       </div>
-      {currentStep.bild && (
+      {currentStep.image && (
         <div className="float-right w-[45%] rounded-lg mb-10 p-4">
           <Image
-            src={`/${currentStep.bild}`}
+            src={`/${currentStep.image}`}
             width={500}
             height={350}
             alt="Bild"
             className="rounded-lg hidden lg:block"
           />
           <Image
-            src={currentStep.bild}
+            src={currentStep.image}
             width={150}
             height={100}
             alt="Bild"
