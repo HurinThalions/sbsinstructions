@@ -47,7 +47,7 @@ export default function KatalogClient({
             {anleitungen.map((anleitung: Anleitung) => (
               <tr
                 key={anleitung.id}
-                className={`${styles.row} cursor-pointer hover:bg-gray-100`}
+                className={`${styles.row} cursor-pointer hover:bg-gray-100 group relative`}
                 onClick={() => handleClick(anleitung.id, anleitung.title)}
               >
                 <td className="px-6 py-4 text-sm border-b">{anleitung.title}</td>
@@ -68,6 +68,10 @@ export default function KatalogClient({
                     height={50}
                     className="block md:hidden"
                   />
+                </td>
+                {/* Tooltip */}
+                <td className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  Auf die Anleitung klicken, um die Anleitung zu öffnen
                 </td>
               </tr>
             ))}
