@@ -66,7 +66,6 @@ export default function ErsteInfosaufnehmen() {
   return (
     <>
       <form onSubmit={handleSubmit} className="flow-root display-flex md:overflow-y-auto p-4">
-      <h2 className="text-lg font-bold mb-4 text-center">Anleitung erstellen</h2>
         <div className="float-left w-[50%] h-[45%]">
           <div className="border-2 border-black rounded-lg mb-4 p-4">
 
