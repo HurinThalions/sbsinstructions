@@ -86,29 +86,29 @@ export async function fetchletzteAnleitungUser(
     }
 }
 
-export async function fetchpassendeAnleitungsschritte(
-    titel: string,
-) {
-    try {
-        const anleitungsschritte = await sql<Anleitungsschritt>`
-            SELECT
-                anleitungsschritte.anleitung_id,
-                anleitungsschritte.title,
-                anleitungsschritte.description,
-                anleitungsschritte.image,
-                anleitungsschritte.material
-            FROM anleitungsschritte
-            WHERE
-                anleitungsschritte.title ILIKE ${`%${titel}%`}
-            ORDER BY anleitungsschritte.id DESC
-        `;
+// export async function fetchpassendeAnleitungsschritte(
+//     titel: string,
+// ) {
+//     try {
+//         const anleitungsschritte = await sql<Anleitungsschritt>`
+//             SELECT
+//                 anleitungsschritte.anleitung_id,
+//                 anleitungsschritte.title,
+//                 anleitungsschritte.description,
+//                 anleitungsschritte.image,
+//                 anleitungsschritte.material
+//             FROM anleitungsschritte
+//             WHERE
+//                 anleitungsschritte.title ILIKE ${`%${titel}%`}
+//             ORDER BY anleitungsschritte.id DESC
+//         `;
 
-        return anleitungsschritte.rows;
-    } catch (error) {
-        console.error('Datenbankfehler: ', error);
-        throw new Error('Fehler beim Holen der Anleitungsschritte');
-    }
-}
+//         return anleitungsschritte.rows;
+//     } catch (error) {
+//         console.error('Datenbankfehler4: ', error);
+//         throw new Error('Fehler beim Holen der Anleitungsschritte');
+//     }
+// }
 
 
 // export async function fetchUser() {
@@ -126,37 +126,5 @@ export async function fetchpassendeAnleitungsschritte(
 //     } catch {
 //         console.error('Datenbankfehler: ', error);
 //         throw new Error('Fehler beim holen der User');
-//     }
-// }
-
-// export async function fetchAnleitungen() {
-
-//     try {
-//         const data = await sql<Anleitung>`
-//         SELECT * FROM anleitungen ORDER BY titel ASC
-//         LIMIT 6
-//     `
-//     const anleitungen = data.rows;
-//     return anleitungen;
-//     } catch (error) {
-//         console.error('Datenbankfehler1: ', error);
-//         throw new Error('Anleitungen holen fehlgeschlagen');
-//     }
-// }
-
-// export async function fetchletzteAnleitung() {
-
-//     try {
-//         const data = await sql<Anleitung>`
-//         SELECT anleitungen.id, anleitungen.titel, anleitungen.dauer, anleitungen.datum, anleitungen.bild
-//         FROM anleitungen
-//         ORDER BY anleitungen.datum DESC
-//         LIMIT 1`;
-
-//         const anleitung = data.rows;
-//         return anleitung;
-//     } catch (error) {
-//         console.error('Datenbankfehler2: ', error);
-//         throw new Error('Fehler beim holen der letzten Anleitung');
 //     }
 // }

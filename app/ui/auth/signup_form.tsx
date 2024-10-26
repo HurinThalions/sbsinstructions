@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { AtSymbolIcon, KeyIcon, UserIcon, ExclamationCircleIcon, ArrowRightIcon } from '@heroicons/react/16/solid';
 import { SignupButton } from '../signinupbutton';
 
 export default function SignupForm() {
   const [errorMessage, setErrorMessage] = useState('');
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,9 +26,9 @@ export default function SignupForm() {
 
     if (!res.ok) {
       const { error } = await res.json();
-      setErrorMessage(error || 'Something went wrong');
+      setErrorMessage(error || 'Etwas ist schiefgelaufen');
     } else {
-      window.location.href = '/signin';
+      router.push('/signin');
     }
   };
 

@@ -82,7 +82,7 @@ export default function LoginForm() {
         <div className='mb-3 text-xl'>
           Noch kein Account?
           <Link href="signup" className="w-full">
-            <SignupButton className="w-full mt-2"> {/* Hinzugefügtes w-full für Button-Breite */}
+            <SignupButton className="w-full mt-2">
               Registrieren <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
             </SignupButton>
           </Link>

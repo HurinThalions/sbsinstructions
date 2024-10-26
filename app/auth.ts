@@ -6,6 +6,7 @@ import { JWT } from 'next-auth/jwt';
 import { Session } from 'next-auth';
 import { User } from 'next-auth';
 
+// Authentifizierung mit email und passwort
 export const authOptions = {
   providers: [
     CredentialsProvider({
@@ -46,12 +47,13 @@ export const authOptions = {
     }),
   ],
   pages: {
-    signIn: '/auth/signin',
-    error: '/auth/error',
+    signIn: '/signin',
+    error: '/error',
   },
+  // Nextauth key holen um session zu ermöglichen
   secret: process.env.NEXTAUTH_SECRET,
   session: {
-    strategy: 'jwt' as 'jwt', // Stelle sicher, dass 'jwt' als spezifischer Wert gesetzt ist
+    strategy: 'jwt' as 'jwt',
   },
   callbacks: {
     async jwt({ token, user }: { token: JWT; user?: User }) {
