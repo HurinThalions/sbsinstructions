@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { AtSymbolIcon, KeyIcon, UserIcon, ExclamationCircleIcon, ArrowRightIcon } from '@heroicons/react/16/solid';
 import { SignupButton } from '../signinupbutton';
 
