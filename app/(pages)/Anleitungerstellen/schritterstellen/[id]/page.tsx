@@ -20,7 +20,7 @@ export default function SchritteErstellenPage() {
   return (
     <main>
       <Statusbar />
-      <h1 className="text-center text-2xl font-bold">Schritte für Anleitung {anleitungId}</h1>
+      <h1 className="text-lg font-bold mb-4 text-center">Schritte für Anleitung {anleitungId}</h1>
       <SchrittundMaterialerstellen anleitungId={anleitungId} />
     </main>
   );
