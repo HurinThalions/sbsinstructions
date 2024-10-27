@@ -89,13 +89,13 @@ export default function KatalogClient({
             {sortedAnleitungen.map((anleitung: Anleitung) => (
               <tr
                 key={anleitung.id}
-                className={`${styles.row} cursor-pointer hover:bg-gray-100 group relative`}
+                className={`${styles.row} cursor-pointer hover:bg-gray-100 group`}
                 onClick={() => handleClick(anleitung.id, anleitung.title)}
               >
                 <td className="px-6 py-4 text-sm border-b">{anleitung.title}</td>
                 <td className="px-6 py-4 text-sm border-b">{anleitung.duration}</td>
                 <td className="px-6 py-4 text-sm border-b hidden lg:table-cell">{new Date(anleitung.date).toLocaleDateString()}</td>
-                <td className="px-6 py-4 text-sm border-b hidden md:table-cell">
+                <td className={`px-6 py-4 text-sm border-b hidden md:table-cell p-2 ${styles.bildZelle}`}>
                   <Image
                     src={`${anleitung.image}`}
                     alt={anleitung.title}
