@@ -8,11 +8,12 @@ export async function POST(req: Request) {
     const result = await sql`
       INSERT INTO anleitungen (title, duration, date, image, nutzername)
       VALUES (${title}, ${duration}, ${date}, ${image}, ${user})
-      RETURNING id;
+      RETURNING id, title;
     `;
 
     const anleitungId = result.rows[0].id;
-    return NextResponse.json({ id: anleitungId});
+    const anleitungTitel = result.rows[0].title
+    return NextResponse.json({ id: anleitungId, title: anleitungTitel});
 
   } catch (error) {
     console.error('Fehler beim Speichern der Anleitung:', error);

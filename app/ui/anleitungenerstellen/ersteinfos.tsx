@@ -53,6 +53,7 @@ export default function ErsteInfosaufnehmen() {
     if (res.ok) {
       const data = await res.json();
       const anleitungId = data.id;
+      const anleitungTitel = data.title;
 
       // Cache-Invalidation von SWR auslösen
       mutate('/api/anleitungen?query=&page=1');
@@ -60,7 +61,7 @@ export default function ErsteInfosaufnehmen() {
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
-        router.push(`/Anleitungerstellen/schritterstellen/${anleitungId}`);
+        router.push(`/Anleitungerstellen/schritterstellen/${anleitungId}?title=${encodeURIComponent(anleitungTitel)}`);
       }, 1000);
     } else {
       const { error } = await res.json();
