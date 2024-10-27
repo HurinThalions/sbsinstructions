@@ -14,7 +14,6 @@ table {
 }
 
 th, td {
-  padding: 10px; /* Gleicher Innenabstand für Zellen */
   border-bottom: 1px solid #ddd; /* Leichte Trennungslinie zwischen den Zeilen */
 }
 

@@ -95,8 +95,7 @@ export default function KatalogClient({
                 <td className="px-6 py-4 text-sm border-b">{anleitung.title}</td>
                 <td className="px-6 py-4 text-sm border-b">{anleitung.duration}</td>
                 <td className="px-6 py-4 text-sm border-b hidden lg:table-cell">{new Date(anleitung.date).toLocaleDateString()}</td>
-                <td className={`px-6 py-4 text-sm border-b hidden md:table-cell ${styles.bild}`}>
-                  <div className="flex items-center justify-center">
+                <td className={`flex items-center justify-center px-6 py-4 text-sm border-b hidden md:table-cell ${styles.bild}`}>
                   <Image
                     src={`${anleitung.image}`}
                     alt={anleitung.title}
@@ -111,7 +110,6 @@ export default function KatalogClient({
                     height={50}
                     className="block md:hidden"
                   />
-                  </div>
                 </td>
                 {/* Tooltip */}
                 <td className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
