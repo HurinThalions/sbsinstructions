@@ -95,7 +95,7 @@ export default function KatalogClient({
                 <td className="px-6 py-4 text-sm border-b">{anleitung.title}</td>
                 <td className="px-6 py-4 text-sm border-b">{anleitung.duration}</td>
                 <td className="px-6 py-4 text-sm border-b hidden lg:table-cell">{new Date(anleitung.date).toLocaleDateString()}</td>
-                <td className={`px-6 py-4 text-sm border-b hidden md:table-cell p-2 ${styles.bildZelle}`}>
+                <td className={`px-6 py-4 text-sm border-b hidden md:table-cell m-2 ${styles.bildZelle}`}>
                   <Image
                     src={`${anleitung.image}`}
                     alt={anleitung.title}
