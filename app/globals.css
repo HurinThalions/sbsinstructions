@@ -8,6 +8,19 @@ body {
   margin: 0;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse; /* Verhindert doppelte Grenzen */
+}
+
+th, td {
+  padding: 10px; /* Gleicher Innenabstand für Zellen */
+  border-bottom: 1px solid #ddd; /* Leichte Trennungslinie zwischen den Zeilen */
+}
+
+td img {
+  margin: 0 auto; /* Bild horizontal zentrieren */
+}
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
