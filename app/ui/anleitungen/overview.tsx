@@ -31,15 +31,15 @@ export default async function Overview({
             <div className="lg:max-w-[40vw] lg:max-h-[45] rounded-lg float-right min-w-[45%]">
               <Image
                 src={`${anleitung.image}`}
-                width={550}
-                height={330}
+                width={500}
+                height={280}
                 alt="Bild der Anleitung"
                 className="rounded-lg border-solid border-2 border-black hidden lg:block"
               />
               <Image
                 src={`${anleitung.image}`}
                 width={150}
-                height={150}
+                height={100}
                 alt="Bild der Anleitung"
                 className="rounded-lg border-solid border-2 border-black block lg:hidden"
               />

@@ -38,7 +38,7 @@ export default function SchrittundMaterialerstellen({ anleitungId }: { anleitung
       setTimeout(() => {
         setShowSuccess(false);
         handleAddAnotherStep();
-      }, 500);
+      }, 1000);
     } else {
       const { error } = await res.json();
       alert(`Fehler: ${error}`);

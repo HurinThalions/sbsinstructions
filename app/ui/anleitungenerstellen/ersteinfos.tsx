@@ -61,7 +61,7 @@ export default function ErsteInfosaufnehmen() {
       setTimeout(() => {
         setShowSuccess(false);
         router.push(`/Anleitungerstellen/schritterstellen/${anleitungId}`);
-      }, 500);
+      }, 1000);
     } else {
       const { error } = await res.json();
       alert(`Fehler: ${error}`);
