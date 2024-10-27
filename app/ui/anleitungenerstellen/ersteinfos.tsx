@@ -30,21 +30,26 @@ export default function ErsteInfosaufnehmen() {
     const user = session?.user?.name || '';
     const imageFile = formData.get('image') as File;
 
+
+    // Sicherstellen, dass das Bild geladen hat
     let imageBase64 = '';
     if (imageFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        imageBase64 = reader.result as string;
-      };
-      reader.readAsDataURL(imageFile);
+      imageBase64 = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result as string);
+        reader.onerror = reject;
+        reader.readAsDataURL(imageFile);
+      });
     }
 
+    // Informationen zum speichern absenden
     const res = await fetch('/api/anleitungen', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, duration, date, image: imageBase64, user }),
     });
 
+    // Id wird zurückgegeben
     if (res.ok) {
       const data = await res.json();
       const anleitungId = data.id;
