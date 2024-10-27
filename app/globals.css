@@ -14,9 +14,12 @@ table {
 }
 
 th, td {
-  border-bottom: 1px solid #ddd; /* Leichte Trennungslinie zwischen den Zeilen */
+  border-bottom: 1px solid #ddd; /* Einheitliche Trennungslinien */
+  text-align: center; /* Zentriere den Text */
+  vertical-align: middle; /* Inhalte vertikal zentrieren */
 }
 
 td img {
+  display: block; /* Verwandelt das Bild in ein Blockelement */
   margin: 0 auto; /* Bild horizontal zentrieren */
 }
