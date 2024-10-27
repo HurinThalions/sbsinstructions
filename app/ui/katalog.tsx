@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import useSWR from 'swr';
+import { useState } from 'react';
 
 import styles from '@/app/ui/css/katalog.module.css';
 import { Anleitung } from "../lib/definitions";
@@ -19,6 +20,8 @@ export default function KatalogClient({
   currentPage: number;
 }) {
   const router = useRouter();
+  const [sortField, setSortField] = useState<'title' | 'duration' | 'date'>('date');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
 
   const { data: anleitungen = initialData } = useSWR(
     `/api/anleitungen?query=${query}&page=${currentPage}`,
@@ -26,8 +29,41 @@ export default function KatalogClient({
     { fallbackData: initialData }
   );
 
+  const handleSort = (field: 'title' | 'duration' | 'date') => {
+    if (sortField === field) {
+      // Toggle the sort order if the same field is clicked
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortOrder('asc');
+    }
+  };
+
+  // Sort the data based on selected field and order
+  const sortedAnleitungen = [...anleitungen].sort((a, b) => {
+    if (sortField === 'title' || sortField === 'date') {
+      const valueA = a[sortField].toString().toLowerCase();
+      const valueB = b[sortField].toString().toLowerCase();
+      if (valueA < valueB) return sortOrder === 'asc' ? -1 : 1;
+      if (valueA > valueB) return sortOrder === 'asc' ? 1 : -1;
+      return 0;
+    } else if (sortField === 'duration') {
+      const valueA = parseInt(a.duration);
+      const valueB = parseInt(b.duration);
+      return sortOrder === 'asc' ? valueA - valueB : valueB - valueA;
+    }
+    return 0;
+  });
+
   const handleClick = (id: string, title: string) => {
     router.push(`/Anleitung/${id}`);
+  };
+
+  const getSortIndicator = (field: 'title' | 'duration' | 'date') => {
+    if (sortField === field) {
+      return sortOrder === 'asc' ? '▲' : '▼';
+    }
+    return null;
   };
 
   return (
@@ -37,14 +73,20 @@ export default function KatalogClient({
         <table className={`min-w-full text-center table-auto`}>
           <thead className="border-b">
             <tr>
-              <th>Titel</th>
-              <th>Dauer</th>
-              <th className='hidden lg:table-cell'>Datum</th>
+              <th onClick={() => handleSort('title')} className="cursor-pointer">
+                Titel {getSortIndicator('title')}
+              </th>
+              <th onClick={() => handleSort('duration')} className="cursor-pointer">
+                Dauer {getSortIndicator('duration')}
+              </th>
+              <th onClick={() => handleSort('date')} className="cursor-pointer hidden lg:table-cell">
+                Datum {getSortIndicator('date')}
+              </th>
               <th className="hidden md:table-cell">Bild</th>
             </tr>
           </thead>
           <tbody>
-            {anleitungen.map((anleitung: Anleitung) => (
+            {sortedAnleitungen.map((anleitung: Anleitung) => (
               <tr
                 key={anleitung.id}
                 className={`${styles.row} cursor-pointer hover:bg-gray-100 group relative`}
