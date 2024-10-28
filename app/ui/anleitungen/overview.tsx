@@ -34,14 +34,14 @@ export default async function Overview({
                 width={500}
                 height={280}
                 alt="Bild der Anleitung"
-                className="rounded-lg border-solid border-2 border-black hidden lg:block"
+                className="rounded-lg border-solid border-2 border-black p-2 hidden lg:block"
               />
               <Image
                 src={`${anleitung.image}`}
                 width={150}
                 height={100}
                 alt="Bild der Anleitung"
-                className="rounded-lg border-solid border-2 border-black block lg:hidden"
+                className="rounded-lg border-solid border-2 border-black p-2 block lg:hidden"
               />
             </div>
             </div>
