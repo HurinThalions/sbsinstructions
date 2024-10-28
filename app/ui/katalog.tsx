@@ -23,6 +23,7 @@ export default function KatalogClient({
   const [sortField, setSortField] = useState<'title' | 'duration' | 'date'>('date');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
 
+  // Aktualisieren des Katalogs
   const { data: anleitungen = initialData } = useSWR(
     `/api/anleitungen?query=${query}&page=${currentPage}`,
     fetcher,
@@ -31,7 +32,7 @@ export default function KatalogClient({
 
   const handleSort = (field: 'title' | 'duration' | 'date') => {
     if (sortField === field) {
-      // Toggle the sort order if the same field is clicked
+      // Sortierung in Asc bzw Desc abändern
       setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
     } else {
       setSortField(field);
@@ -39,7 +40,7 @@ export default function KatalogClient({
     }
   };
 
-  // Sort the data based on selected field and order
+  // Sortieren der Tabelle
   const sortedAnleitungen = [...anleitungen].sort((a, b) => {
     if (sortField === 'title' || sortField === 'date') {
       const valueA = a[sortField].toString().toLowerCase();
@@ -55,10 +56,12 @@ export default function KatalogClient({
     return 0;
   });
 
+  // Weiterleitung zu der angeklicken Anleitung
   const handleClick = (id: string, title: string) => {
     router.push(`/Anleitung/${id}`);
   };
 
+  // Was sortiert wird
   const getSortIndicator = (field: 'title' | 'duration' | 'date') => {
     if (sortField === field) {
       return sortOrder === 'asc' ? '▲' : '▼';
@@ -94,7 +97,9 @@ export default function KatalogClient({
               >
                 <td className="px-6 py-4 text-sm border-b">{anleitung.title}</td>
                 <td className="px-6 py-4 text-sm border-b">{anleitung.duration}</td>
-                <td className="px-6 py-4 text-sm border-b hidden lg:table-cell">{new Date(anleitung.date).toLocaleDateString()}</td>
+                <td className="px-6 py-4 text-sm border-b hidden lg:table-cell">{new Date(anleitung.date).toLocaleDateString()}</td> {/* Verstecken bei mittleren Bildschirm */}
+
+                {/* Verstecken des Bildes aber beibehalten von strucktur des Katalogs */}
                 {anleitung.image ? (
                   <td className="px-6 py-4 text-sm border-b hidden md:table-cell">
                     <div className="flex items-center justify-center">
@@ -110,7 +115,7 @@ export default function KatalogClient({
                 ) : (
                   <td className="px-6 py-4 text-sm border-b md:hidden"></td>
                 )}
-                {/* Tooltip */}
+                {/* Tipp */}
                 <td className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   Auf die Anleitung klicken, um die Anleitung zu öffnen
                 </td>
