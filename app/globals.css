@@ -8,18 +8,17 @@ body {
   margin: 0;
 }
 
+th, td {
+  padding: 10px; /* Gleicher Innenabstand für Zellen */
+  border-bottom: 1px solid #ddd; /* Gleiche Trennungslinie zwischen den Zeilen */
+  text-align: center; /* Zentriert den Text in den Zellen */
+}
+
 table {
   width: 100%;
   border-collapse: collapse; /* Verhindert doppelte Grenzen */
 }
 
-th, td {
-  border-bottom: 1px solid #ddd; /* Einheitliche Trennungslinien */
-  text-align: center; /* Zentriere den Text */
-  vertical-align: middle; /* Inhalte vertikal zentrieren */
-}
-
 td img {
-  display: block; /* Verwandelt das Bild in ein Blockelement */
   margin: 0 auto; /* Bild horizontal zentrieren */
 }
