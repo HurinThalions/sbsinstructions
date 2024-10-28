@@ -72,7 +72,7 @@ export default function KatalogClient({
   return (
     <div className="flex flex-col place-items-center drop-shadow">
       <div className={`${styles.container}`}>
-        <h1 className="text-center text-xl font-bold min-w-full mb-12">Anleitungen</h1>
+        <h1 className="text-center text-xl font-bold min-w-full md:mb-6">Anleitungen</h1>
         <table className={`min-w-full text-center table-auto`}>
           <thead className="border-b">
             <tr>
