@@ -1,7 +1,9 @@
 'use client';
 import { useSearchParams } from "next/navigation"
+import { Suspense } from "react";
 
 import Einzelschritte from "@/app/ui/anleitungen/einzelschritte"
+import { AnleitungSkeleton } from "@/app/ui/skeletons";
 
 export default function Anleitungsschritte() {
 
@@ -11,7 +13,9 @@ export default function Anleitungsschritte() {
     const parsedSchritte = schritte ? JSON.parse(schritte) : [];
     return(
         <div>
-            <Einzelschritte schritte={parsedSchritte} />
+            <Suspense fallback={<AnleitungSkeleton/>}>
+                <Einzelschritte schritte={parsedSchritte} />
+            </Suspense>
         </div>
 
     )
