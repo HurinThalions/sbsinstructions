@@ -17,8 +17,8 @@ export default function Endseite() {
             width={300}
             alt="GruenerHaken"
             className="block md:hidden"></Image>
-        <h1 className="text-2xl font-bold text-center mt-4 p-4">Aufgabe geschafft!</h1>
           <EndseitenButton />
-      </div>
+          <h1 className="text-2xl font-bold text-center mt-4 p-4">Aufgabe geschafft!</h1>
+          </div>
     );
 }
