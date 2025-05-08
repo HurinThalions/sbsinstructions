@@ -4,8 +4,8 @@ import EndseitenButton from "@/app/ui/EndseiteButton";
 
 export default function Endseite() {
     return (
-      <div className="flex items-center justify-center max-h-screen">
-        <div>
+      <div >
+        <div className="flex items-center justify-center max-h-screen">
         <Image
             src={'/GruenerHaken.svg'}
             height={300}
