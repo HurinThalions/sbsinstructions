@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { KatalogSkeleton } from './ui/skeletons';
 import Suche from '@/app/ui/suche';
-import KatalogServer from './ui/katalog-server';
+import KatalogServer from './ui/katalog/katalog-server';
 
 export default async function StartPage({
   searchParams,

@@ -6,7 +6,7 @@ import useSWR from 'swr';
 import { useState } from 'react';
 
 import styles from '@/app/ui/css/katalog.module.css';
-import { Anleitung } from "../lib/definitions";
+import { Anleitung } from "../../lib/definitions";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 

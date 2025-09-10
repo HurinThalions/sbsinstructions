@@ -1,4 +1,4 @@
-import { fetchgefilterteAnleitungen } from "../lib/data";
+import { fetchgefilterteAnleitungen } from "../../lib/data";
 import KatalogClient from "./katalog";
 
 export default async function KatalogServer({
